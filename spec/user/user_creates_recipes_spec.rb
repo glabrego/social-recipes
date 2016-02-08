@@ -10,15 +10,15 @@ feature 'User creates recipes' do
 
     visit new_recipe_path
 
-    fill_in 'name', with: recipe.name
-    fill_in 'kitchen', with: kitchen.name
-    fill_in 'food type', with: food_type.name
-    fill_in 'preference', with: preference.title
-    fill_in 'servings', with: recipe.servings
-    fill_in 'cook time', with: recipe.cook_time
-    fill_in 'difficulty', with: recipe.difficulty
-    fill_in 'ingredients', with: recipe.ingredients
-    fill_in 'steps', with: recipe.steps
+    fill_in 'Name', with: recipe.name
+    select kitchen.name, from: 'Kitchen'
+    select food_type.name, from: 'Food type'
+    select preference.title, from: 'Preference'
+    fill_in 'Servings', with: recipe.servings
+    fill_in 'Cook time', with: recipe.cook_time
+    select  recipe.difficulty, from: 'Difficulty'
+    fill_in 'Ingredients', with: recipe.ingredients
+    fill_in 'Steps', with: recipe.steps
 
     click_on 'Criar Receita'
 

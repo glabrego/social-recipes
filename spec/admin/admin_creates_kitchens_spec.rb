@@ -22,7 +22,7 @@ feature 'Admin creates new kitchens' do
     expect(page).to have_content kitchen.name
   end
 
-  scenario 'and not admin users cannot create new kitchens' do
+  scenario 'and not admin users cannot creates new kitchens' do
     user = FactoryGirl.create(:user, admin: false)
     kitchen = FactoryGirl.build(:kitchen)
 

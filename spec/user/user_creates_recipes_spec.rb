@@ -32,4 +32,12 @@ feature 'User creates recipes' do
     expect(page).to have_content recipe.ingredients
     expect(page).to have_content recipe.steps
   end
+
+  scenario 'invalid data' do
+    visit new_recipe_path
+
+    click_on 'Criar Receita'
+
+    expect(page).to have_content "Warning! All fields are mandatory."
+  end
 end

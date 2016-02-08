@@ -1,3 +1,3 @@
 class Preference < ActiveRecord::Base
-  has_many: recipes
+  has_many :recipes
 end

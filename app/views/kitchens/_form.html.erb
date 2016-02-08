@@ -1,0 +1,7 @@
+<span class="error_message"><%= flash[:alert] %></span>
+<%= form_for @kitchen do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit submit_text %>
+<% end %>

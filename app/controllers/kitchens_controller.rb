@@ -1,12 +1,18 @@
 class KitchensController < ApplicationController
   before_action :set_kitchen, only: :show
+  before_action :authenticate_user!, only: [:new, :create]
+
   def new
     @kitchen = Kitchen.new
   end
 
   def create
-    @kitchen = Kitchen.create(kitchen_params)
-    respond_with @kitchen
+    if current_user.admin?
+      @kitchen = Kitchen.create(kitchen_params)
+      respond_with @kitchen
+    else
+      redirect_to root_path
+    end
   end
 
   def show

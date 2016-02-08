@@ -1,0 +1,34 @@
+<span class="error_message"><%= flash[:alert] %></span>
+<%= form_for @recipe do |f  | %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :kitchen_id %>
+  <%= f.collection_select :kitchen_id, @kitchens, :id, :name %>
+
+  <%= f.label :food_type_id %>
+  <%= f.collection_select :food_type_id, @food_types, :id, :name %>
+
+  <%= f.label :preference_id %>
+  <%= f.collection_select :preference_id, @preferences, :id, :title %>
+
+  <%= f.label :servings %>
+  <%= f.text_field :servings %>
+
+  <%= f.label :cook_time %>
+  <%= f.text_field :cook_time %>
+
+  <%= f.label :difficulty %>
+  <%= f.select :difficulty, options_for_select(Recipe::DIFFICULTY_OPTIONS) %>
+
+  <%= f.label :ingredients %>
+  <%= f.text_area :ingredients %>
+
+  <%= f.label :steps %>
+  <%= f.text_area :steps %>
+
+  <%= f.label :photo %>
+  <%= f.text_field :photo %>
+
+  <%= f.submit submit_text %>
+<% end %>

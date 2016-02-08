@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :food_type do
-    name "MyString"
+    name "Salgado"
   end
 end

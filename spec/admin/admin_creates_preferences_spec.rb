@@ -34,7 +34,7 @@ feature 'Admin creates preferences' do
 
     visit new_preference_path
 
-    fill_in 'Name', with: preference.title
+    fill_in 'Title', with: preference.title
 
     click_on 'Criar Preferência'
 

@@ -1,0 +1,7 @@
+<span class="error_message"><%= flash[:alert] %></span>
+<%= form_for @preference do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.submit submit_text %>
+<% end %>

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :recipes, only: [:create, :new, :show]
   resources :kitchens, only: [:create, :new, :show]
   resources :food_types, only: [:create, :new, :show]
+  resources :preferences, only: [:create, :new, :show]
 end

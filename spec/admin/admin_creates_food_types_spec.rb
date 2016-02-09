@@ -12,7 +12,7 @@ feature 'Admin creates food types' do
 
     click_on 'Log in'
 
-    visit new_foodtype_path
+    visit new_food_type_path
 
     fill_in 'Name', with: food_type.name
 
@@ -32,7 +32,7 @@ feature 'Admin creates food types' do
 
     click_on 'Log in'
 
-    visit new_foodtype_path
+    visit new_food_type_path
 
     fill_in 'Name', with: food_type.name
 

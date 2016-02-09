@@ -1,4 +1,4 @@
-class FoodtypesController < ApplicationController
+class FoodTypesController < ApplicationController
   before_action :set_foodtype, only: :show
   before_action :authenticate_user!, except: :show
 
@@ -21,7 +21,7 @@ class FoodtypesController < ApplicationController
   private
 
   def foodtype_params
-    params.require(:foodtype)
+    params.require(:food_type)
           .permit(:name)
   end
 

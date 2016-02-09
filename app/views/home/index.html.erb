@@ -5,3 +5,17 @@
   <p><strong>Preference:</strong> <%= recipe.preference.title %></p>
   <p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
 <% end  %>
+
+<aside>
+  <% @kitchens.each do |kitchen| %>
+    <%= link_to kitchen.name, kitchen_path(kitchen) %>
+  <% end %>
+
+  <% @food_types.each do |food_type| %>
+    <%= link_to food_type.name, food_type_path(food_type) %>
+  <% end %>
+
+  <% @preferences.each do |preference| %>
+    <%= link_to preference.title, preference_path(preference) %>
+  <% end %>
+</aside>

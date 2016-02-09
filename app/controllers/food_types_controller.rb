@@ -11,7 +11,7 @@ class FoodTypesController < ApplicationController
       @foodtype = FoodType.create(foodtype_params)
       respond_with @foodtype
     else
-      redirect_to root_path
+      redirect_to root_path, alert: 'You are not allowed to create new food type!'
     end
   end
 

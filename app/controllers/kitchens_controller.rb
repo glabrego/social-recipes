@@ -11,7 +11,7 @@ class KitchensController < ApplicationController
       @kitchen = Kitchen.create(kitchen_params)
       respond_with @kitchen
     else
-      redirect_to root_path
+      redirect_to root_path, alert: 'You are not allowed to create kitchens!'
     end
   end
 

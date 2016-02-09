@@ -16,6 +16,7 @@ feature 'User keeps your recipes' do
     click_on 'Log in'
 
     visit edit_recipe_path(recipe)
+    click_on 'Salvar Receita'
     expect(page).to have_content recipe.name
 
     visit edit_recipe_path(recipe2)

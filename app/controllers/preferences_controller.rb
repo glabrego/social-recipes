@@ -11,7 +11,7 @@ class PreferencesController < ApplicationController
       @preference = Preference.create(preference_params)
       respond_with @preference
     else
-      redirect_to root_path
+      redirect_to root_path, alert: 'You are not allowed to create preferences!'
     end
   end
 

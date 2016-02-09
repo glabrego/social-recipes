@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_collections, only: [:new, :create]
-  before_action :set_recipe, only: [:show]
+  before_action :set_collections, only: [:new, :create, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: :show
 
   def new
@@ -12,7 +12,18 @@ class RecipesController < ApplicationController
     @recipe.user_id = current_user.id
     respond_with @recipe
   end
-  
+
+  def edit
+    if current_user.id != @recipe.user_id
+      redirect_to root_path, alert: 'You are not allowed to edit that job!'
+    end
+  end
+
+  def update
+    @recipe.update(recipe_params)
+    respond_with @recipe
+  end
+
   def show
   end
 

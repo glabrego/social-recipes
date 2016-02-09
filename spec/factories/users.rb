@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    email 'admin@gmail.com'
+    sequence(:email, 'a') { |n| n+"@gemini.com" }
     password 'rubyonrails'
     admin true
+  end
+
+  def random_name
+    ('a'..'z').to_a.shuffle.join
   end
 end

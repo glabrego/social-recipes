@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_collections, only: [:new, :create]
   before_action :set_recipe, only: [:show]
+  before_action :authenticate_user!, except: :show
 
   def new
     @recipe = Recipe.new
@@ -8,9 +9,10 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
+    @recipe.user_id = current_user.id
     respond_with @recipe
   end
-
+  
   def show
   end
 

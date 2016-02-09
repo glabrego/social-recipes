@@ -1,3 +1,9 @@
 <h2><%= @preference.title %></h2>
 <hr>
-<p><strong>Kitchen:</strong> <%= @preference.title %></p>
+<% @recipes.each do |recipe| %>
+  <p><%= link_to recipe.name, recipe %></p>
+  <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
+  <p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
+  <p><strong>Preference:</strong> <%= recipe.preference.title %></p>
+  <p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
+<% end  %>

@@ -16,6 +16,7 @@ class KitchensController < ApplicationController
   end
 
   def show
+    @recipes = Recipe.where(kitchen_id: params[:id])
   end
 
   private

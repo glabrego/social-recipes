@@ -16,6 +16,7 @@ class PreferencesController < ApplicationController
   end
 
   def show
+    @recipes = Recipe.where(preference_id: params[:id])
   end
 
   private

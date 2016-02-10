@@ -45,4 +45,24 @@ feature 'User favorite recipe' do
 
     expect(page).to have_content(recipe.name)
   end
+
+  scenario 'and see favorites at home' do
+    recipe = FactoryGirl.create(:recipe)
+
+    user = FactoryGirl.create(:user, admin: false)
+
+    visit new_user_session_path
+
+    fill_in 'Email',     with: user.email
+    fill_in 'Password', with: user.password
+
+    click_on 'Log in'
+
+    visit recipe_path(recipe)
+    click_on 'Favoritar'
+
+    visit root_path
+
+    expect(page).to have_content(recipe.name)
+  end
 end

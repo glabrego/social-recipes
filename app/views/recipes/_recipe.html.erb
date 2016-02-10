@@ -1,1 +1,5 @@
-<p><%= link_to recipe.name, recipe_path(recipe) %></p><br>
+<p><%= link_to recipe.name, recipe %></p><br>
+<p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
+<p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
+<p><strong>Preference:</strong> <%= recipe.preference.title %></p>
+<p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>

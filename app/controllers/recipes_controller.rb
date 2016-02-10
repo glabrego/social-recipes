@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit, :update]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:favorite]
+  before_action :set_recipe, except: [:new, :create]
   before_action :authenticate_user!, except: :show
 
   def new
@@ -59,11 +59,4 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end
-
-  def set_collections
-    @kitchens = Kitchen.all
-    @food_types = FoodType.all
-    @preferences = Preference.all
-  end
-
 end

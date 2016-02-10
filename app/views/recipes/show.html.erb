@@ -9,3 +9,5 @@
 <p><strong>Difficulty:</strong> <%= @recipe.difficulty %></p>
 <p><strong>Ingredients:</strong> <%= @recipe.ingredients %></p>
 <p><strong>Steps:</strong> <%= @recipe.steps %></p>
+
+<%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %>

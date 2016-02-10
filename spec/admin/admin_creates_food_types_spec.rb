@@ -2,15 +2,9 @@ require 'rails_helper'
 
 feature 'Admin creates food types' do
   scenario 'successfully' do
-    user = FactoryGirl.create(:user)
     food_type = FactoryGirl.build(:food_type)
 
-    visit new_user_session_path
-
-    fill_in 'Email',     with: user.email
-    fill_in 'Password', with: user.password
-
-    click_on 'Log in'
+    login_admin
 
     visit new_food_type_path
 
@@ -22,15 +16,9 @@ feature 'Admin creates food types' do
   end
 
   scenario 'and not admin users cannot creates new food types' do
-    user = FactoryGirl.create(:user, admin: false)
     food_type = FactoryGirl.build(:food_type)
 
-    visit new_user_session_path
-
-    fill_in 'Email',     with: user.email
-    fill_in 'Password', with: user.password
-
-    click_on 'Log in'
+    login_user
 
     visit new_food_type_path
 

@@ -2,16 +2,9 @@ require 'rails_helper'
 
 feature 'Admin creates new kitchens' do
   scenario 'successfully' do
-
-    user = FactoryGirl.create(:user)
     kitchen = FactoryGirl.build(:kitchen)
 
-    visit new_user_session_path
-
-    fill_in 'Email',     with: user.email
-    fill_in 'Password', with: user.password
-
-    click_on 'Log in'
+    login_admin
 
     visit new_kitchen_path
 
@@ -23,15 +16,9 @@ feature 'Admin creates new kitchens' do
   end
 
   scenario 'and not admin users cannot creates new kitchens' do
-    user = FactoryGirl.create(:user, admin: false)
     kitchen = FactoryGirl.build(:kitchen)
 
-    visit new_user_session_path
-
-    fill_in 'Email',     with: user.email
-    fill_in 'Password', with: user.password
-
-    click_on 'Log in'
+    login_user
 
     visit new_kitchen_path
 

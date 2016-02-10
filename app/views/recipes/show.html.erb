@@ -10,4 +10,8 @@
 <p><strong>Ingredients:</strong> <%= @recipe.ingredients %></p>
 <p><strong>Steps:</strong> <%= @recipe.steps %></p>
 
-<%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %>
+<%= @recipe.fans.count %> <%= 'Favoritaram' %>
+
+<%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %><br>
+<%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: "post"%><br>
+<%= link_to 'Remover Favorita', favorite_recipe_path(@recipe), method: "delete"%><br>

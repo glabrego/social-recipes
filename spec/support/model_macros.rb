@@ -1,14 +1,14 @@
 module ModelMacros
 
   def login_admin
-      user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user)
 
-      visit new_user_session_path
+    visit new_user_session_path
 
-      fill_in 'Email',     with: user.email
-      fill_in 'Password', with: user.password
+    fill_in 'Email',     with: user.email
+    fill_in 'Password', with: user.password
 
-      click_on 'Log in'
+    click_on 'Log in'
   end
 
   def login_user

@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit, :update]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:favorite]
   before_action :authenticate_user!, except: :show
 
   def new
@@ -34,6 +34,18 @@ class RecipesController < ApplicationController
   end
 
   def show
+  end
+
+  def favorite
+    unless @recipe.fans.exists?(current_user.id)
+      @recipe.fans << current_user
+      @recipe.save
+      redirect_to @recipe, notice: 'Receita adicionada as favoritas!'
+    else
+      @recipe.fans.delete(current_user)
+      @recipe.save
+      redirect_to @recipe, notice: 'Receita removida das favoritas!'
+    end
   end
 
   private

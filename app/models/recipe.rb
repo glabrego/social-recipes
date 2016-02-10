@@ -8,4 +8,12 @@ class Recipe < ActiveRecord::Base
   :cook_time, :difficulty, :ingredients, :steps, presence: true
 
   has_and_belongs_to_many :fans, class_name: :User, join_table: :recipes_users
+
+  def self.most_favorites(order = nil)
+    if order == :asc
+      self.all.sort_by{|recipe| recipe.fans.size}
+    else
+      self.all.sort_by{|recipe| -recipe.fans.size}
+    end
+  end
 end

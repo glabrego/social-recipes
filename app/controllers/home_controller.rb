@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     @kitchens = Kitchen.all
     @food_types = FoodType.all
     @preferences = Preference.all
-    @recipes = Recipe.last(20)
+    @favorites = Recipe.most_favorites.first(10)
+    @recipes = Recipe.last(20) - @favorites
   end
 end

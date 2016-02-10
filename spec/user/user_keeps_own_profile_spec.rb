@@ -2,9 +2,11 @@ require 'rails_helper'
 
 feature 'User keep your own profile' do
   scenario 'successfully' do
-    login_user
+    user = FactoryGirl.create(:user, admin: false)
 
-    visit user_path
+    login_user(user)
+
+    visit user_path(user)
 
     expect(page).to have_content 'Guilherme Labrego'
     expect(page).to have_content 'São Paulo'

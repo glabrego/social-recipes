@@ -1,7 +1,9 @@
 module ModelMacros
 
-  def login_admin
-    user = FactoryGirl.create(:user)
+  def login_admin(user = nil)
+    unless user != nil
+      user = FactoryGirl.create(:user)
+    end
 
     visit new_user_session_path
 
@@ -11,8 +13,10 @@ module ModelMacros
     click_on 'Log in'
   end
 
-  def login_user
-    user = FactoryGirl.create(:user, admin: false)
+  def login_user(user = nil)
+    unless user != nil
+      user = FactoryGirl.create(:user, admin: false)
+    end
 
     visit new_user_session_path
 

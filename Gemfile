@@ -14,6 +14,8 @@ gem 'responders'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug'

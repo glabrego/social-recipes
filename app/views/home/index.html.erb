@@ -1,23 +1,44 @@
-<h2>Receitas Favoritadas</h2>
-<% @favorites.each do |recipe| %>
-  <%= render recipe%>
-<% end  %>
+<div id="main-container" class="container">
+  <div class="row">
+    <div id="content" class="col-xs-12 col-sm-6 col-md-8">
+      <h2>Receitas Favoritadas</h2>
+      <% @favorites.each do |recipe| %>
+        <%= render recipe%>
+      <% end  %>
 
-<h2> Receitas adicionadas recentemente</h2>
-<% @recipes.each do |recipe| %>
-  <%= render recipe%>
-<% end  %>
+      <h2> Receitas adicionadas recentemente</h2>
+        <% @recipes.each do |recipe| %>
+        <%= render recipe%>
+      <% end  %>
+    </div>
+    <div id="sidebar" class="col-xs-6 col-md-4">
+      <h3> Filtros </h3>
+      <h4> Cozinhas </h4>
+      <ul style="list-style-type:none">
+          <% @kitchens.each do |kitchen| %>
+          <li>
+          <%= link_to kitchen.name, kitchen_path(kitchen) %>
+          </li>
+          <% end %>
+      </ul>
 
-<aside>
-  <% @kitchens.each do |kitchen| %>
-    <%= link_to kitchen.name, kitchen_path(kitchen) %>
-  <% end %>
+      <h4> Tipos de Comida </h4>
+      <ul style="list-style-type:none">
+        <% @food_types.each do |food_type| %>
+        <li>
+          <%= link_to food_type.name, food_type_path(food_type) %>
+        </li>
+        <% end %>
+      </ul>
 
-  <% @food_types.each do |food_type| %>
-    <%= link_to food_type.name, food_type_path(food_type) %>
-  <% end %>
-
-  <% @preferences.each do |preference| %>
-    <%= link_to preference.title, preference_path(preference) %>
-  <% end %>
-</aside>
+      <h4> Preferências </h4>
+      <ul style="list-style-type:none">
+        <% @preferences.each do |preference| %>
+        <li>
+          <%= link_to preference.title, preference_path(preference) %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

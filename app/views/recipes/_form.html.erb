@@ -1,34 +1,46 @@
 <span class="error_message"><%= flash[:alert] %></span>
 <%= form_for @recipe, html: { multipart: true} do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :kitchen_id %>
-  <%= f.collection_select :kitchen_id, @kitchens, :id, :name %>
-
-  <%= f.label :food_type_id %>
-  <%= f.collection_select :food_type_id, @food_types, :id, :name %>
-
-  <%= f.label :preference_id %>
-  <%= f.collection_select :preference_id, @preferences, :id, :title %>
-
-  <%= f.label :servings %>
-  <%= f.text_field :servings %>
-
-  <%= f.label :cook_time %>
-  <%= f.text_field :cook_time %>
-
-  <%= f.label :difficulty %>
-  <%= f.select :difficulty, options_for_select(Recipe::DIFFICULTY_OPTIONS) %>
-
-  <%= f.label :ingredients %>
-  <%= f.text_area :ingredients %>
-
-  <%= f.label :steps %>
-  <%= f.text_area :steps %>
-
-  <%= f.label :photo %>
-  <%= f.file_field :photo %>
-
-  <%= f.submit submit_text %>
+  <div class="form_group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :kitchen_id %>
+    <%= f.collection_select :kitchen_id, @kitchens, :id, :name, {prompt: 'Cozinha Gastronônomica'}, {class: "form-control"} %>
+  </div>
+  <div class="form_group">
+    <%= f.label :food_type_id %>
+    <%= f.collection_select :food_type_id, @food_types, :id, :name, {prompt: 'Tipo de Comida'}, {class: "form-control"}%>
+  </div>
+  <div class="form_group">
+    <%= f.label :preference_id %>
+    <%= f.collection_select :preference_id, @preferences, :id, :title, {prompt: 'Preferência'}, {class: "form-control"} %>
+  </div>
+  <div class="form_group">
+    <%= f.label :servings %>
+    <%= f.text_field :servings, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :cook_time %>
+    <%= f.text_field :cook_time, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :difficulty %>
+    <%= f.select :difficulty, options_for_select(Recipe::DIFFICULTY_OPTIONS), {prompt: 'Nível de Dificuldade'}, {class: "form-control"} %>
+  </div>
+  <div class="form_group">
+    <%= f.label :ingredients %>
+    <%= f.text_area :ingredients, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :steps %>
+    <%= f.text_area :steps, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :photo %>
+    <%= f.file_field :photo, class: 'form-control' %>
+  </div>
+  <div class="form_group">
+    <%= f.submit submit_text, class: 'btn btn-primary' %>
+  </div>
 <% end %>

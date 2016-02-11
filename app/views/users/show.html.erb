@@ -4,6 +4,8 @@
 <p><%= @user.twitter %></p><br>
 <p><%= @user.facebook %></p><br>
 
+<h2> Cozinhas Favoritas </h2>
+<%= render @user.likes%>
 
 <h2>Receitas Favoritas</h2>
 <%= render @user.favorites%>

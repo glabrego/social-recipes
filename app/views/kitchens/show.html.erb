@@ -1,6 +1,9 @@
 <h2><%= @kitchen.name %></h2>
 <hr>
 
+<%= link_to 'Favoritar', like_kitchen_path(@kitchen), method: "post"%><br>
+<%= link_to 'Remover Favorita', like_kitchen_path(@kitchen), method: "delete"%><br>
+
 <% @recipes.each do |recipe| %>
   <p><%= link_to recipe.name, recipe %></p>
   <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>

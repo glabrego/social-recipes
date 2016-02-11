@@ -1,5 +1,5 @@
 class KitchensController < ApplicationController
-  before_action :set_kitchen, only: :show
+  before_action :set_kitchen, only: [:show, :like]
   before_action :authenticate_user!, except: :show
 
   def new
@@ -17,6 +17,18 @@ class KitchensController < ApplicationController
 
   def show
     @recipes = Recipe.where(kitchen_id: params[:id])
+  end
+
+  def like
+    unless @kitchen.likers.exists?(current_user.id)
+      @kitchen.likers << current_user
+      @kitchen.save
+      redirect_to @kitchen, notice: 'Cozinha adicionada as favoritas!'
+    else
+      @kitchen.likers.delete(current_user)
+      @kitchen.save
+      redirect_to @kitchen, notice: 'Cozinha removida das favoritas!'
+    end
   end
 
   private

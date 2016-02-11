@@ -9,6 +9,6 @@ feature 'User favorite kitchen' do
     visit kitchen_path(kitchen)
     click_on 'Favoritar'
 
-    expect(page).to have_content 'Receita favoritada!'
+    expect(page).to have_content 'Cozinha adicionada as favoritas!'
   end
 end

@@ -1,5 +1,5 @@
 <span class="error_message"><%= flash[:alert] %></span>
-<%= form_for @recipe do |f| %>
+<%= form_for @recipe, html: { multipart: true} do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -28,7 +28,7 @@
   <%= f.text_area :steps %>
 
   <%= f.label :photo %>
-  <%= f.text_field :photo %>
+  <%= f.file_field :photo %>
 
   <%= f.submit submit_text %>
 <% end %>

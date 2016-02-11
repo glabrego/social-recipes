@@ -1,4 +1,5 @@
 <p><%= link_to recipe.name, recipe %></p><br>
+<%= image_tag(recipe.photo_url, alt: recipe.name ) %>
 <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
 <p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
 <p><strong>Preference:</strong> <%= recipe.preference.title %></p>

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: http-espacogeek-com
+  api_key: '337342162424449'
+  api_secret: hGxSwzCCKCwB4CIZWv-IyuGCtPo
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: http-espacogeek-com
+  api_key: '337342162424449'
+  api_secret: hGxSwzCCKCwB4CIZWv-IyuGCtPo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: http-espacogeek-com
+  api_key: '337342162424449'
+  api_secret: hGxSwzCCKCwB4CIZWv-IyuGCtPo
+  enhance_image_tag: true
+  static_image_support: false

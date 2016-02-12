@@ -1,17 +1,28 @@
-<h2><%= @recipe.name %></h2>
-<hr>
-<%= image_tag(@recipe.photo_url, alt: @recipe.name ) %>
-<p><strong>Kitchen:</strong> <%= @recipe.kitchen.name %></p>
-<p><strong>Food type:</strong> <%= @recipe.food_type.name%></p>
-<p><strong>Preference:</strong> <%= @recipe.preference.title %></p>
-<p><strong>Servings:</strong> <%= @recipe.servings %></p>
-<p><strong>Cook time:</strong> <%= @recipe.cook_time %></p>
-<p><strong>Difficulty:</strong> <%= @recipe.difficulty %></p>
-<p><strong>Ingredients:</strong> <%= @recipe.ingredients %></p>
-<p><strong>Steps:</strong> <%= @recipe.steps %></p>
 
-<%= @recipe.fans.count %> <%= 'Favoritaram' %>
+<div id="main-container" class="container">
+  <div class="row">
+    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
+      <h2><%= @recipe.name %></h2>
+      <hr>
+      <%= image_tag(@recipe.photo_url, alt: @recipe.name ) %>
+      <p><strong>Kitchen:</strong> <%= @recipe.kitchen.name %></p>
+      <p><strong>Food type:</strong> <%= @recipe.food_type.name%></p>
+      <p><strong>Preference:</strong> <%= @recipe.preference.title %></p>
+      <p><strong>Servings:</strong> <%= @recipe.servings %></p>
+      <p><strong>Cook time:</strong> <%= @recipe.cook_time %></p>
+      <p><strong>Difficulty:</strong> <%= @recipe.difficulty %></p>
+      <p><strong>Ingredients:</strong> <%= @recipe.ingredients %></p>
+      <p><strong>Steps:</strong> <%= @recipe.steps %></p>
 
-<%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %><br>
-<%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: "post"%><br>
-<%= link_to 'Remover Favorita', favorite_recipe_path(@recipe), method: "delete"%><br>
+      <%= @recipe.fans.count %> <%= 'Favoritaram' %>
+
+      <%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %><br>
+      <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: "post"%><br>
+      <%= link_to 'Remover Favorita', favorite_recipe_path(@recipe), method: "delete"%><br>
+
+    </div>
+    <div id="sidebar" class="col-xs-6 col-m-4">
+
+    </div>
+  </div>
+</div>

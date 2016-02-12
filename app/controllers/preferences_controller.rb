@@ -1,7 +1,7 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: :show
   before_action :authenticate_user!, except: :show
-  before_action :set_collections , only: :index
+  before_action :set_collections, only: :index
 
   def index
   end

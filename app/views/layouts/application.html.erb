@@ -7,11 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
          <a class="navbar-brand" href="<% root_path %>">Social Recipes</a>
          <p class="navbar-text navbar-right">
+            <% if user_signed_in? %>
+              <%= link_to ' Olá, ' + current_user.email, user_path(current_user), class:'glyphicon glyphicon-cog'%>
+            <% end %>
+            <%= link_to ' Sign Up', new_user_registration_path , class:'glyphicon glyphicon-user'%>
+            <%= link_to ' Login', new_user_session_path, class:'glyphicon glyphicon-log-in'%>
          </p>
       </div>
     </nav>

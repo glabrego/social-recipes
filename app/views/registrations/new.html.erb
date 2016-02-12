@@ -1,49 +1,59 @@
-<h2>Sign up</h2>
+<div id="main-container" class="container">
+  <div class="row">
+    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <h2>Sign up</h2>
 
-  <div class="form_group">
-    <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true, class: 'form-control' %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="form_group">
+        <%= f.label :name %><br />
+        <%= f.email_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :location %><br />
+        <%= f.email_field :location, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :twitter %><br />
+        <%= f.email_field :twitter, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :facebook %><br />
+        <%= f.email_field :facebook, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.submit "Sign up", class: 'btn btn-primary'%>
+      </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+    <div id="sidebar" class="col-xs-6 col-m-4">
+
+    </div>
   </div>
-
-  <div class="form_group">
-    <%= f.label :location %><br />
-    <%= f.email_field :location, autofocus: true, class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :twitter %><br />
-    <%= f.email_field :twitter, autofocus: true, class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :facebook %><br />
-    <%= f.email_field :facebook, autofocus: true, class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.submit "Sign up", class: 'btn btn-primary'%>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

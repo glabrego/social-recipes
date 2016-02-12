@@ -23,7 +23,7 @@ feature 'User filter recipes at homepage' do
   scenario 'and see filtered food_type content' do
     food_type = FactoryGirl.create(:food_type, name: 'Doce')
     recipe = FactoryGirl.create(:recipe)
-    recipe2 = FactoryGirl.create(:recipe, name:'Torta', food_type_id: food_type.id)
+    recipe2 = FactoryGirl.create(:recipe, name: 'Torta', food_type_id: food_type.id)
 
     visit root_path
 

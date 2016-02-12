@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :preference do
-    title "Sem lactose"
+    title 'Sem lactose'
   end
 end

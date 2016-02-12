@@ -4,7 +4,7 @@ FactoryGirl.define do
     location 'São Paulo'
     twitter 'glabrego'
     facebook 'glabrego'
-    sequence(:email, 'a') { |n| n+"@gemini.com" }
+    sequence(:email, 'a') { |n| n + '@gemini.com' }
     password 'rubyonrails'
     admin true
   end

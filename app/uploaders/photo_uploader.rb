@@ -5,6 +5,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   storage :file
 
   def public_id
-    return model.name
+    model.name
   end
 end

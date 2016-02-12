@@ -1,7 +1,11 @@
 class FoodTypesController < ApplicationController
   before_action :set_foodtype, only: :show
   before_action :authenticate_user!, except: :show
+  before_action :set_collections , only: :index
 
+  def index
+  end
+  
   def new
     @foodtype = FoodType.new
   end

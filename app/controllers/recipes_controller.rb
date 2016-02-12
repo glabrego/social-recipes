@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
-  before_action :set_collections, only: [:new, :create, :edit, :update]
-  before_action :set_recipe, except: [:new, :create]
+  before_action :set_collections, only: [:new, :create, :edit, :update, :index]
+  before_action :set_recipe, except: [:new, :create, :index]
   before_action :authenticate_user!, except: :show
+
+  def index
+  end
 
   def new
     @recipe = Recipe.new

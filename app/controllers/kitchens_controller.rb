@@ -1,7 +1,11 @@
 class KitchensController < ApplicationController
   before_action :set_kitchen, only: [:show, :like]
   before_action :authenticate_user!, except: :show
+  before_action :set_collections , only: :index
 
+  def index
+  end
+  
   def new
     @kitchen = Kitchen.new
   end

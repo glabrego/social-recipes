@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show]
-  resources :kitchens, only: [:create, :new, :show] do
+  resources :kitchens, only: [:create, :new, :show, :index] do
     member do
       post 'like'
       delete 'like'
     end
   end
-  resources :food_types, only: [:create, :new, :show]
-  resources :preferences, only: [:create, :new, :show]
+  resources :food_types, only: [:create, :new, :show, :index]
+  resources :preferences, only: [:create, :new, :show, :index]
 end

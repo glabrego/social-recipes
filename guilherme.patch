@@ -1,0 +1,157 @@
+diff --git c/.gitignore w/.gitignore
+index 050c9d9..b8567d8 100644
+--- c/.gitignore
++++ w/.gitignore
+@@ -15,3 +15,4 @@
+ /log/*
+ !/log/.keep
+ /tmp
++/coverage
+diff --git c/.rubocop w/.rubocop
+deleted file mode 100644
+index 2763776..0000000
+--- c/.rubocop
++++ /dev/null
+@@ -1,13 +0,0 @@
+-Documentation:
+-  Enabled: false
+-AllCops:
+-  RunRailsCops: true
+-  Include:
+-    - '**/Rakefile'
+-    - '**/config.ru'
+-  Exclude:
+-    - 'bin/**/*'
+-    - 'db/**/*'
+-    - 'config/**/*'
+-    - 'script/**/*'
+-    - !ruby/regexp /old_and_unused\.rb$/
+diff --git c/.rubocop.yml w/.rubocop.yml
+index e69de29..b244a64 100644
+--- c/.rubocop.yml
++++ w/.rubocop.yml
+@@ -0,0 +1,14 @@
++Documentation:
++  Enabled: false
++Rails:
++  Enabled: true
++AllCops:
++  Include:
++    - '**/Rakefile'
++    - '**/config.ru'
++  Exclude:
++    - 'bin/**/*'
++    - 'db/**/*'
++    - 'config/**/*'
++    - 'script/**/*'
++    - !ruby/regexp /old_and_unused\.rb$/
+diff --git c/Gemfile w/Gemfile
+index bf72c5c..d93dd03 100644
+--- c/Gemfile
++++ w/Gemfile
+@@ -1,7 +1,7 @@
+ source 'https://rubygems.org'
+ 
+ gem 'rails', '4.2.4'
+-gem 'sqlite3'
++gem 'sqlite3', group: [:development, :test]
+ gem 'sass-rails', '~> 5.0'
+ gem 'uglifier', '>= 1.3.0'
+ gem 'coffee-rails', '~> 4.1.0'
+@@ -22,11 +22,17 @@ group :development, :test do
+   gem 'pry-byebug'
+   gem 'rspec-rails'
+   gem 'factory_girl_rails'
+-  gem 'rubocop'
++  gem 'rubocop', require: false
+   gem 'capybara'
++  gem 'simplecov', require: false
+ end
+ 
+ group :development do
+   gem 'web-console', '~> 2.0'
+   gem 'spring'
+ end
++
++group :production do
++  gem 'pg'
++  gem 'rails_12factor'
++end
+diff --git c/Gemfile.lock w/Gemfile.lock
+index d2ada3a..dfe2e33 100644
+--- c/Gemfile.lock
++++ w/Gemfile.lock
+@@ -84,6 +84,7 @@ GEM
+       thread_safe (~> 0.1)
+       warden (~> 1.2.3)
+     diff-lcs (1.2.5)
++    docile (1.1.5)
+     domain_name (0.5.20160128)
+       unf (>= 0.0.5, < 1.0.0)
+     erubis (2.7.0)
+@@ -121,6 +122,7 @@ GEM
+     orm_adapter (0.5.0)
+     parser (2.3.0.2)
+       ast (~> 2.2)
++    pg (0.18.4)
+     powerpack (0.1.1)
+     pry (0.10.3)
+       coderay (~> 1.1.0)
+@@ -153,6 +155,11 @@ GEM
+       rails-deprecated_sanitizer (>= 1.0.1)
+     rails-html-sanitizer (1.0.3)
+       loofah (~> 2.0)
++    rails_12factor (0.0.3)
++      rails_serve_static_assets
++      rails_stdout_logging
++    rails_serve_static_assets (0.0.5)
++    rails_stdout_logging (0.0.4)
+     railties (4.2.4)
+       actionpack (= 4.2.4)
+       activesupport (= 4.2.4)
+@@ -202,6 +209,11 @@ GEM
+     sdoc (0.4.1)
+       json (~> 1.7, >= 1.7.7)
+       rdoc (~> 4.0)
++    simplecov (0.11.2)
++      docile (~> 1.1.0)
++      json (~> 1.8)
++      simplecov-html (~> 0.10.0)
++    simplecov-html (0.10.0)
+     slop (3.6.0)
+     spring (1.6.3)
+     sprockets (3.5.2)
+@@ -251,16 +263,22 @@ DEPENDENCIES
+   factory_girl_rails
+   jbuilder (~> 2.0)
+   jquery-rails
++  pg
+   pry-byebug
+   pry-rails
+   rails (= 4.2.4)
++  rails_12factor
+   responders
+   rspec-rails
+   rubocop
+   sass-rails (~> 5.0)
+   sdoc (~> 0.4.0)
++  simplecov
+   spring
+   sqlite3
+   turbolinks
+   uglifier (>= 1.3.0)
+   web-console (~> 2.0)
++
++BUNDLED WITH
++   1.10.5
+diff --git c/spec/rails_helper.rb w/spec/rails_helper.rb
+index 8b430fd..4334913 100644
+--- c/spec/rails_helper.rb
++++ w/spec/rails_helper.rb
+@@ -1,4 +1,6 @@
+ # This file is copied to spec/ when you run 'rails generate rspec:install'
++require 'simplecov'
++SimpleCov.start
+ ENV['RAILS_ENV'] ||= 'test'
+ require File.expand_path('../../config/environment', __FILE__)
+ # Prevent database truncation if the environment is production

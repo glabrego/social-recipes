@@ -11,8 +11,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
-    @recipe.user_id = current_user.id
+    @recipe = current_user.recipes.create(recipe_params)
     respond_with @recipe
   end
 
@@ -41,12 +40,10 @@ class RecipesController < ApplicationController
 
   def favorite
     unless @recipe.fans.exists?(current_user.id)
-      @recipe.fans << current_user
-      @recipe.save
+      add_fan
       redirect_to @recipe, notice: 'Receita adicionada as favoritas!'
     else
-      @recipe.fans.delete(current_user)
-      @recipe.save
+      remove_fan
       redirect_to @recipe, notice: 'Receita removida das favoritas!'
     end
   end
@@ -61,5 +58,13 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def add_fan
+    @recipe.fans << current_user
+  end
+
+  def remove_fan
+    @recipe.fans.delete(current_user)
   end
 end

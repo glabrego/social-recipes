@@ -1,0 +1,97 @@
+# Social Recipes
+
+Social Recipes is a small Rails application for publishing and discovering recipes with a lightweight social layer.
+
+From the code and test suite, the product behavior is:
+
+- Visitors can browse recipes from the homepage and open recipe details.
+- Recipes are organized by kitchen, food type, and preference.
+- Signed-in users can create recipes, favorite recipes, and like kitchens.
+- User profile pages show liked kitchens, favorited recipes, and recipes published by that user.
+- Admin users can create kitchens, food types, and preferences.
+
+The UI is a mix of English labels and Portuguese messages/content.
+
+## Stack
+
+- Ruby on Rails 4.2.4
+- Ruby 2.3.8 in Docker for compatibility with the original gem set
+- SQLite in development and test
+- PostgreSQL gem included for production only
+- Devise for authentication
+- CarrierWave with Cloudinary integration for recipe photos
+- Bootstrap Sass for styling
+- RSpec, Capybara, FactoryGirl, and SimpleCov for tests
+
+## Running Locally
+
+The original dependency set does not install cleanly on the host macOS Ruby available on this machine. The reliable path is Docker.
+
+### Prerequisites
+
+- Docker CLI
+- Docker Compose
+- Colima running
+
+If needed:
+
+```bash
+colima start
+```
+
+### Build the app
+
+```bash
+docker-compose build
+```
+
+### Create the development database
+
+```bash
+docker-compose run --rm app bash -lc "bundle exec rake db:setup"
+```
+
+### Start the app
+
+```bash
+docker-compose up -d
+```
+
+Then open:
+
+```text
+http://127.0.0.1:3000
+```
+
+### Stop the app
+
+```bash
+docker-compose down
+```
+
+## Running Tests
+
+```bash
+docker-compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rake db:create db:schema:load && bundle exec rspec"
+```
+
+Expected result from the validated environment:
+
+```text
+26 examples, 0 failures
+```
+
+## Files Added For Compatibility
+
+To make the project runnable on this machine without rewriting the application, I added:
+
+- `Dockerfile`
+- `docker-compose.yml`
+
+The Docker image uses Ruby `2.3.8` and archived Debian package sources because the app depends on a historical gem set from 2015-2016.
+
+## Notes and Caveats
+
+- `config/cloudinary.yml` contains hard-coded credentials and should be treated as sensitive configuration.
+- `db/seeds.rb` uses `FactoryGirl`, which is acceptable for local/dev use here because the Docker image installs the development and test gems, but it is not a production-grade seed strategy.
+- The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.

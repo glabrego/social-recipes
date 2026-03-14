@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    volumes:
+      - .:/app
+      - bundle:/bundle
+    environment:
+      BUNDLE_PATH: /bundle
+      RAILS_ENV: development
+    ports:
+      - "3000:3000"
+    command: bundle _1.17.3_ exec rails server -b 0.0.0.0
+
+volumes:
+  bundle:

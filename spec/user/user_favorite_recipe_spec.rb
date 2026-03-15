@@ -1,7 +1,7 @@
 require 'rails_helper'
 feature 'User favorite recipe' do
   scenario 'and favorite it' do
-    recipe = FactoryGirl.create(:recipe)
+    recipe = FactoryBot.create(:recipe)
 
     login_user
 
@@ -13,7 +13,7 @@ feature 'User favorite recipe' do
   end
 
   scenario 'and remove from favorites' do
-    recipe = FactoryGirl.create(:recipe)
+    recipe = FactoryBot.create(:recipe)
 
     login_user
 
@@ -27,9 +27,9 @@ feature 'User favorite recipe' do
   end
 
   scenario 'and see users favorites' do
-    recipe = FactoryGirl.create(:recipe)
+    recipe = FactoryBot.create(:recipe)
 
-    user = FactoryGirl.create(:user, admin: false)
+    user = FactoryBot.create(:user, admin: false)
 
     visit new_user_session_path
 
@@ -47,9 +47,9 @@ feature 'User favorite recipe' do
   end
 
   scenario 'and see favorites at home' do
-    recipe = FactoryGirl.create(:recipe)
+    recipe = FactoryBot.create(:recipe)
 
-    user = FactoryGirl.create(:user, admin: false)
+    user = FactoryBot.create(:user, admin: false)
 
     visit new_user_session_path
 

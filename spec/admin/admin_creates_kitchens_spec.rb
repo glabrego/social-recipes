@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin creates new kitchens' do
   scenario 'successfully' do
-    kitchen = FactoryGirl.build(:kitchen)
+    kitchen = FactoryBot.build(:kitchen)
 
     login_admin
 
@@ -16,7 +16,7 @@ feature 'Admin creates new kitchens' do
   end
 
   scenario 'and not admin users cannot creates new kitchens' do
-    kitchen = FactoryGirl.build(:kitchen)
+    kitchen = FactoryBot.build(:kitchen)
 
     login_user
 

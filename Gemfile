@@ -20,7 +20,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '4.11.1'
   gem 'rubocop', require: false
   gem 'capybara'
   gem 'simplecov', require: false

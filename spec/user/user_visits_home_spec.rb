@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'Home show recipes' do
   scenario 'successfully' do
-    user = FactoryGirl.create(:user)
-    food_type = FactoryGirl.create(:food_type)
-    kitchen = FactoryGirl.create(:kitchen)
-    preference = FactoryGirl.create(:preference)
-    recipe = FactoryGirl.create(:recipe)
+    user = FactoryBot.create(:user)
+    food_type = FactoryBot.create(:food_type)
+    kitchen = FactoryBot.create(:kitchen)
+    preference = FactoryBot.create(:preference)
+    recipe = FactoryBot.create(:recipe)
 
     visit root_path
 
@@ -18,11 +18,11 @@ feature 'Home show recipes' do
   end
 
   scenario 'and visit recipes details' do
-    user = FactoryGirl.create(:user)
-    food_type = FactoryGirl.create(:food_type)
-    kitchen = FactoryGirl.create(:kitchen)
-    preference = FactoryGirl.create(:preference)
-    recipe = FactoryGirl.create(:recipe)
+    user = FactoryBot.create(:user)
+    food_type = FactoryBot.create(:food_type)
+    kitchen = FactoryBot.create(:kitchen)
+    preference = FactoryBot.create(:preference)
+    recipe = FactoryBot.create(:recipe)
 
     visit root_path
 

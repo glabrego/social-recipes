@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin creates preferences' do
   scenario 'successfully' do
-    preference = FactoryGirl.build(:preference)
+    preference = FactoryBot.build(:preference)
 
     login_admin
 
@@ -16,7 +16,7 @@ feature 'Admin creates preferences' do
   end
 
   scenario 'and not admin users cannot creates new food types' do
-    preference = FactoryGirl.build(:preference)
+    preference = FactoryBot.build(:preference)
 
     login_user
 

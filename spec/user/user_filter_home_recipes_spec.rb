@@ -2,13 +2,13 @@ require 'rails_helper'
 
 feature 'User filter recipes at homepage' do
   scenario 'successfully' do
-    food_type = FactoryGirl.create(:food_type)
-    food_type2 = FactoryGirl.create(:food_type, name: 'Doce')
-    kitchen = FactoryGirl.create(:kitchen)
-    kitchen2 = FactoryGirl.create(:kitchen, name: 'Italiana')
-    preference = FactoryGirl.create(:preference)
-    preference2 = FactoryGirl.create(:preference, title: 'Vegetariana')
-    recipe = FactoryGirl.create(:recipe)
+    food_type = FactoryBot.create(:food_type)
+    food_type2 = FactoryBot.create(:food_type, name: 'Doce')
+    kitchen = FactoryBot.create(:kitchen)
+    kitchen2 = FactoryBot.create(:kitchen, name: 'Italiana')
+    preference = FactoryBot.create(:preference)
+    preference2 = FactoryBot.create(:preference, title: 'Vegetariana')
+    recipe = FactoryBot.create(:recipe)
 
     visit root_path
 
@@ -21,9 +21,9 @@ feature 'User filter recipes at homepage' do
   end
 
   scenario 'and see filtered food_type content' do
-    food_type = FactoryGirl.create(:food_type, name: 'Doce')
-    recipe = FactoryGirl.create(:recipe)
-    recipe2 = FactoryGirl.create(:recipe, name: 'Torta', food_type_id: food_type.id)
+    food_type = FactoryBot.create(:food_type, name: 'Doce')
+    recipe = FactoryBot.create(:recipe)
+    recipe2 = FactoryBot.create(:recipe, name: 'Torta', food_type_id: food_type.id)
 
     visit root_path
 
@@ -34,9 +34,9 @@ feature 'User filter recipes at homepage' do
   end
 
   scenario 'and see filtered kitchen content' do
-    kitchen = FactoryGirl.create(:kitchen, name: 'Italiana')
-    recipe = FactoryGirl.create(:recipe)
-    recipe2 = FactoryGirl.create(:recipe, name: 'Miojo', kitchen_id: kitchen.id)
+    kitchen = FactoryBot.create(:kitchen, name: 'Italiana')
+    recipe = FactoryBot.create(:recipe)
+    recipe2 = FactoryBot.create(:recipe, name: 'Miojo', kitchen_id: kitchen.id)
 
     visit root_path
 
@@ -47,9 +47,9 @@ feature 'User filter recipes at homepage' do
   end
 
   scenario 'and see filtered preference content' do
-    preference = FactoryGirl.create(:preference, title: 'Vegetariana')
-    recipe = FactoryGirl.create(:recipe)
-    recipe2 = FactoryGirl.create(:recipe, name: 'Strogonoff', preference_id: preference.id)
+    preference = FactoryBot.create(:preference, title: 'Vegetariana')
+    recipe = FactoryBot.create(:recipe)
+    recipe2 = FactoryBot.create(:recipe, name: 'Strogonoff', preference_id: preference.id)
 
     visit root_path
 

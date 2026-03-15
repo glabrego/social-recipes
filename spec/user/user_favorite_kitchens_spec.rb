@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User favorite kitchen' do
   scenario 'successfully' do
-    kitchen = FactoryGirl.create(:kitchen)
+    kitchen = FactoryBot.create(:kitchen)
 
     login_user
 
@@ -13,7 +13,7 @@ feature 'User favorite kitchen' do
   end
 
   scenario 'and remove favorited kitchen' do
-    kitchen = FactoryGirl.create(:kitchen)
+    kitchen = FactoryBot.create(:kitchen)
 
     login_user
 
@@ -25,8 +25,8 @@ feature 'User favorite kitchen' do
   end
 
   scenario 'and see users favorites' do
-    kitchen = FactoryGirl.create(:kitchen)
-    user = FactoryGirl.create(:user)
+    kitchen = FactoryBot.create(:kitchen)
+    user = FactoryBot.create(:user)
 
     login_user(user)
 

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'User creates recipes' do
   scenario 'successfully' do
-    user = FactoryGirl.create(:user)
-    food_type = FactoryGirl.build(:food_type)
-    kitchen = FactoryGirl.build(:kitchen)
-    preference = FactoryGirl.build(:preference)
-    recipe = FactoryGirl.build(:recipe)
+    user = FactoryBot.create(:user)
+    food_type = FactoryBot.build(:food_type)
+    kitchen = FactoryBot.build(:kitchen)
+    preference = FactoryBot.build(:preference)
+    recipe = FactoryBot.build(:recipe)
 
     visit new_user_session_path
 
@@ -41,7 +41,7 @@ feature 'User creates recipes' do
   end
 
   scenario 'invalid data' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
 
     visit new_user_session_path
 

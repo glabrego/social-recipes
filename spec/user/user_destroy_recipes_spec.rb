@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User now can destroy your own recipes' do
   scenario 'succesfully' do
-    user = FactoryGirl.create(:user, admin: false)
+    user = FactoryBot.create(:user, admin: false)
 
     visit new_user_session_path
 
@@ -11,7 +11,7 @@ feature 'User now can destroy your own recipes' do
 
     click_on 'Log in'
 
-    recipe = FactoryGirl.create(:recipe, user_id: user.id)
+    recipe = FactoryBot.create(:recipe, user_id: user.id)
 
     visit recipe_path(recipe)
 

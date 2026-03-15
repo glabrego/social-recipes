@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'User keeps your recipes' do
   scenario 'successfully' do
-    user = FactoryGirl.create(:user, admin: false)
-    user2 = FactoryGirl.create(:user, email: 'giga@gmail.com', admin: false)
-    recipe = FactoryGirl.create(:recipe, user_id: user.id)
-    recipe2 = FactoryGirl.create(:recipe, user_id: user2.id)
-    food_type = FactoryGirl.build(:food_type)
+    user = FactoryBot.create(:user, admin: false)
+    user2 = FactoryBot.create(:user, email: 'giga@gmail.com', admin: false)
+    recipe = FactoryBot.create(:recipe, user_id: user.id)
+    recipe2 = FactoryBot.create(:recipe, user_id: user2.id)
+    food_type = FactoryBot.build(:food_type)
 
     visit new_user_session_path
 

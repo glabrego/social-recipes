@@ -21,7 +21,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 - Devise for authentication
 - CarrierWave with Cloudinary integration for recipe photos
 - Bootstrap Sass for styling
-- RSpec, Capybara, FactoryGirl, and SimpleCov for tests
+- RSpec, Capybara, FactoryBot, and SimpleCov for tests
 
 ## Running Locally
 
@@ -93,5 +93,5 @@ The Docker image uses Ruby `2.3.8` and archived Debian package sources because t
 ## Notes and Caveats
 
 - `config/cloudinary.yml` contains hard-coded credentials and should be treated as sensitive configuration.
-- `db/seeds.rb` uses `FactoryGirl`, which is acceptable for local/dev use here because the Docker image installs the development and test gems, but it is not a production-grade seed strategy.
+- `db/seeds.rb` uses `FactoryBot`, which is acceptable for local/dev use here because the Docker image installs the development and test gems, but it is not a production-grade seed strategy.
 - The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.

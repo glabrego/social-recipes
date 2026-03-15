@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin creates food types' do
   scenario 'successfully' do
-    food_type = FactoryGirl.build(:food_type)
+    food_type = FactoryBot.build(:food_type)
 
     login_admin
 
@@ -16,7 +16,7 @@ feature 'Admin creates food types' do
   end
 
   scenario 'and not admin users cannot creates new food types' do
-    food_type = FactoryGirl.build(:food_type)
+    food_type = FactoryBot.build(:food_type)
 
     login_user
 

@@ -2,6 +2,14 @@
 
 This changelog was reconstructed from the repository commit history because the project does not use historical tags or formal releases.
 
+## 2026-03-15
+
+### Dependency cleanup
+
+- Removed app-level usage of `responders` and replaced `respond_with` controller flows with explicit redirects and renders.
+- Renamed `FactoryGirl` usage to `FactoryBot` and switched to `factory_bot_rails`.
+- Removed low-risk direct dependencies from the Gemfile, including `rails_12factor`, `spring`, `sdoc`, `jbuilder`, and the direct `coffee-rails` entry.
+
 ## 2026-03-14
 
 ### Documentation and local development

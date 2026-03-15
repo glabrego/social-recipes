@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-kitchen = FactoryGirl.create(:kitchen)
-food_type = FactoryGirl.create(:food_type)
-preference = FactoryGirl.create(:preference)
+kitchen = FactoryBot.create(:kitchen)
+food_type = FactoryBot.create(:food_type)
+preference = FactoryBot.create(:preference)

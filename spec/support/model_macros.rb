@@ -1,6 +1,6 @@
 module ModelMacros
   def login_admin(user = nil)
-    user = FactoryGirl.create(:user) if user.nil?
+    user = FactoryBot.create(:user) if user.nil?
 
     visit new_user_session_path
 
@@ -11,7 +11,7 @@ module ModelMacros
   end
 
   def login_user(user = nil)
-    user = FactoryGirl.create(:user, admin: false) if user.nil?
+    user = FactoryBot.create(:user, admin: false) if user.nil?
 
     visit new_user_session_path
 

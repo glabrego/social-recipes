@@ -6,7 +6,7 @@ feature 'User creates recipes' do
                  Lasana Pizza Esfiha Coxinha Rabanada Pudim Nuggets Sopa Café Pão Bolo)
 
     recipes.each do |name|
-      FactoryGirl.create(:recipe, name: name)
+      FactoryBot.create(:recipe, name: name)
     end
 
     visit root_path

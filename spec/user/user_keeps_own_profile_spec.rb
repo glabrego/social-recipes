@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User keep your own profile' do
   scenario 'successfully' do
-    user = FactoryGirl.create(:user, admin: false)
+    user = FactoryBot.create(:user, admin: false)
 
     login_user(user)
 
@@ -12,7 +12,7 @@ feature 'User keep your own profile' do
     expect(page).to have_content 'São Paulo'
   end
   scenario 'and edits profile' do
-    user = FactoryGirl.create(:user, admin: false)
+    user = FactoryBot.create(:user, admin: false)
 
     login_user(user)
 

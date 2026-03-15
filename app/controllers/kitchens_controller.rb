@@ -12,8 +12,13 @@ class KitchensController < ApplicationController
 
   def create
     if current_user.admin?
-      @kitchen = Kitchen.create(kitchen_params)
-      respond_with @kitchen
+      @kitchen = Kitchen.new(kitchen_params)
+      if @kitchen.save
+        redirect_to @kitchen
+      else
+        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        render :new
+      end
     else
       redirect_to root_path, alert: 'You are not allowed to create kitchens!'
     end

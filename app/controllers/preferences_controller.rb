@@ -12,8 +12,13 @@ class PreferencesController < ApplicationController
 
   def create
     if current_user.admin?
-      @preference = Preference.create(preference_params)
-      respond_with @preference
+      @preference = Preference.new(preference_params)
+      if @preference.save
+        redirect_to @preference
+      else
+        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        render :new
+      end
     else
       redirect_to root_path, alert: 'You are not allowed to create preferences!'
     end

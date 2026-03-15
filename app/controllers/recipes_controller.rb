@@ -11,8 +11,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.create(recipe_params)
-    respond_with @recipe
+    @recipe = current_user.recipes.build(recipe_params)
+    if @recipe.save
+      redirect_to @recipe
+    else
+      flash.now[:alert] = 'Warning! All fields are mandatory.'
+      render :new
+    end
   end
 
   def edit
@@ -22,8 +27,12 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe.update(recipe_params)
-    respond_with @recipe
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      flash.now[:alert] = 'Warning! All fields are mandatory.'
+      render :edit
+    end
   end
 
   def destroy

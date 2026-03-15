@@ -12,8 +12,13 @@ class FoodTypesController < ApplicationController
 
   def create
     if current_user.admin?
-      @foodtype = FoodType.create(foodtype_params)
-      respond_with @foodtype
+      @foodtype = FoodType.new(foodtype_params)
+      if @foodtype.save
+        redirect_to @foodtype
+      else
+        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        render :new
+      end
     else
       redirect_to root_path, alert: 'You are not allowed to create new food type!'
     end

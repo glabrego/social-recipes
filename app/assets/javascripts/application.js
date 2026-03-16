@@ -10,22 +10,37 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require bootstrap-sprockets
+//= require turbo
 //= require_tree .
 
-$(function() {
-  $('.upload').on('change', function(event) {
+document.addEventListener('turbo:load', function() {
+  var uploadField = document.querySelector('.upload');
+  var imageFrame = document.querySelector('.image-frame');
+
+  if (!uploadField || !imageFrame) {
+    return;
+  }
+
+  uploadField.addEventListener('change', function(event) {
     var files = event.target.files;
-    var image = files[0]
-    var reader = new FileReader();
+    var image = files && files[0];
+    var reader;
+
+    if (!image) {
+      imageFrame.innerHTML = '';
+      return;
+    }
+
+    reader = new FileReader();
     reader.onload = function(file) {
       var img = new Image();
+
       img.src = file.target.result;
-      $('.image-frame').html(img);
-    }
+      img.alt = 'Recipe preview';
+      imageFrame.innerHTML = '';
+      imageFrame.appendChild(img);
+    };
+
     reader.readAsDataURL(image);
   });
 });

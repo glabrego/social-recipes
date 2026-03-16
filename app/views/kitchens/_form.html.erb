@@ -1,5 +1,5 @@
 <span class="error_message"><%= flash[:alert] %></span>
-<%= form_for @kitchen do |f| %>
+<%= form_with model: @kitchen, local: true do |f| %>
   <div class="form_group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>

@@ -2,20 +2,21 @@
 <html>
 <head>
   <title>SocialRecipes</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
   <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 </head>
 <body>
-    <nav class='navbar navbar-default navbar-fixed-top'>
+    <nav class='navbar navbar-expand-lg fixed-top bg-light border-bottom'>
       <div class='container'>
          <%= link_to 'Social Recipe', root_path, class: 'navbar-brand' %>
          <p class='navbar-text navbar-right'>
             <% if user_signed_in? %>
-              <%= link_to ' Olá, ' + current_user.email, user_path(current_user), class:'glyphicon glyphicon-cog'%>
+              <%= link_to 'Olá, ' + current_user.email, user_path(current_user), class: 'me-3 text-decoration-none' %>
             <% end %>
-            <%= link_to ' Sign Up', new_user_registration_path , class:'glyphicon glyphicon-user'%>
-            <%= link_to ' Login', new_user_session_path, class:'glyphicon glyphicon-log-in'%>
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'me-3 text-decoration-none' %>
+            <%= link_to 'Login', new_user_session_path, class: 'text-decoration-none' %>
          </p>
       </div>
     </nav>

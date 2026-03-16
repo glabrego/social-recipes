@@ -20,7 +20,8 @@ The UI is a mix of English labels and Portuguese messages/content.
 - PostgreSQL gem included for production only
 - Devise for authentication
 - CarrierWave with Cloudinary integration for recipe photos
-- Bootstrap Sass for styling
+- Turbo Rails for frontend navigation/runtime
+- Bootstrap 5 with Dart Sass for styling
 - RSpec, Capybara, FactoryBot, and SimpleCov for tests
 
 ## Running Locally
@@ -98,6 +99,7 @@ To make the project runnable on this machine without rewriting the application, 
 - `Dockerfile`
 - `docker-compose.yml`
 - `app/assets/config/manifest.js`
+- `app/assets/builds/.keep`
 - `config/storage.yml`
 
 The Docker image now uses Ruby `2.7.8` and a modern Bundler lock so the app can run on Rails `6.1` while keeping the legacy frontend stack intact.
@@ -113,6 +115,8 @@ The Docker image now uses Ruby `2.7.8` and a modern Bundler lock so the app can 
 - The app now runs on Rails `6.1.7.10` with Ruby `2.7.8` in Docker.
 - The Rails `6.x` bridge required regenerating `Gemfile.lock` with Bundler `2.4.22`, moving the Docker workflow to native `arm64` on this machine, and upgrading the test/tooling stack to modern Rails-compatible versions.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
-- Rails `6` requires `app/assets/config/manifest.js`, even though the app still uses the legacy Sprockets, jQuery, Turbolinks, and Bootstrap Sass frontend stack.
+- Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
+- The styling stack now uses Bootstrap 5 and Dart Sass. Rails builds CSS through `bundle exec rails dartsass:build`, and the Docker/CI commands were updated to run that build before serving or testing the app.
+- Rails `6` requires `app/assets/config/manifest.js`, and the asset manifest now links the generated CSS in `app/assets/builds`.
 - A minimal `config/storage.yml` is present because Rails `6.1` expects Active Storage configuration, even though the app still uses CarrierWave and Cloudinary for uploads.
-- Boot and test runs still emit warnings from legacy debugger and mail/network gems (`pry-byebug`, `net-protocol`) and the old frontend stack remains a known follow-up item for the frontend modernization phase.
+- Boot and test runs still emit warnings from legacy debugger and mail/network gems (`pry-byebug`, `net-protocol`). Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.

@@ -8,7 +8,7 @@ feature 'User filter recipes at homepage' do
     kitchen2 = FactoryBot.create(:kitchen, name: 'Italiana')
     preference = FactoryBot.create(:preference)
     preference2 = FactoryBot.create(:preference, title: 'Vegetariana')
-    recipe = FactoryBot.create(:recipe)
+    FactoryBot.create(:recipe)
 
     visit root_path
 

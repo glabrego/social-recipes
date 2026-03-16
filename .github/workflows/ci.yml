@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build app image
+        run: docker compose build
+
+      - name: Run RuboCop
+        run: docker compose run --rm app bash -lc "bundle exec rubocop --lint --force-exclusion app config db lib spec"
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build app image
+        run: docker compose build
+
+      - name: Run test suite
+        env:
+          CLOUDINARY_CLOUD_NAME: test-cloud
+          CLOUDINARY_API_KEY: test-key
+          CLOUDINARY_API_SECRET: test-secret
+        run: docker compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rake db:create db:schema:load && bundle exec rspec"

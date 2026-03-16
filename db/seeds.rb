@@ -1,11 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+kitchen = Kitchen.find_or_create_by!(name: 'Japonesa')
+food_type = FoodType.find_or_create_by!(name: 'Salgado')
+preference = Preference.find_or_create_by!(title: 'Sem lactose')
 
-kitchen = FactoryBot.create(:kitchen)
-food_type = FactoryBot.create(:food_type)
-preference = FactoryBot.create(:preference)
+admin = User.find_or_initialize_by(email: 'admin@socialrecipes.local')
+admin.assign_attributes(
+  name: 'Social Recipes Admin',
+  location: 'Sao Paulo',
+  twitter: 'socialrecipes',
+  facebook: 'socialrecipes',
+  password: 'rubyonrails',
+  password_confirmation: 'rubyonrails',
+  admin: true
+)
+admin.save!
+
+Recipe.find_or_create_by!(name: 'Temaki de Salmao Completo') do |recipe|
+  recipe.kitchen = kitchen
+  recipe.food_type = food_type
+  recipe.preference = preference
+  recipe.user = admin
+  recipe.servings = 4
+  recipe.cook_time = 45
+  recipe.difficulty = 'Medio'
+  recipe.ingredients = 'Salmao, alga, cream cheese e cebolinha.'
+  recipe.steps = 'Corte a alga, monte o recheio e enrole o temaki.'
+end

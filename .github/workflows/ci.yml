@@ -25,7 +25,7 @@ jobs:
           cache-to: type=gha,mode=max,scope=app-image
 
       - name: Run RuboCop
-        run: docker compose run --rm app bash -lc "bundle exec rails dartsass:build && bundle exec rubocop --lint --force-exclusion app config db lib spec"
+        run: docker compose run --rm app bash -lc "bundle exec rubocop --lint --force-exclusion app config db lib spec"
 
   test:
     runs-on: ubuntu-latest
@@ -51,4 +51,4 @@ jobs:
           CLOUDINARY_CLOUD_NAME: test-cloud
           CLOUDINARY_API_KEY: test-key
           CLOUDINARY_API_SECRET: test-secret
-        run: docker compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rails dartsass:build && bundle exec rails db:environment:set RAILS_ENV=test && bundle exec rake db:create db:schema:load && bundle exec rspec"
+        run: docker compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rails db:environment:set RAILS_ENV=test && bundle exec rake db:create db:schema:load && bundle exec rspec"

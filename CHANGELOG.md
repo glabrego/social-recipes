@@ -4,13 +4,22 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Rails 6.1 to 7.2 upgrade
+
+- Upgraded the app from Rails `6.1.7.10` to `7.1.5.2` and then to Rails `7.2.2.2`.
+- Moved the Docker runtime from Ruby `2.7.8` to Ruby `3.1.6` on Debian Bookworm so the app runs against a modern SQLite `3.40.x` toolchain.
+- Replaced the Dart Sass build step with `sassc-rails` on Sprockets after the older `sass-embedded` path failed under the new Ruby runtime.
+- Removed `config/secrets.yml`, set `secret_key_base` directly in environment config, and updated Rails/RSpec settings that became deprecated on the Rails `7.1` and `7.2` path.
+- Simplified the Docker and CI commands so they no longer need a separate stylesheet build before booting or testing the app.
+- Verified Rails `7.2.2.2` boot, RuboCop linting, the Docker-based test suite, `rails zeitwerk:check`, and browser smoke checks across the homepage and Devise auth pages.
+
 ### Frontend runtime and asset modernization
 
 - Replaced `turbolinks` with `turbo-rails` and removed the jQuery-based runtime from the app asset manifest.
 - Rewrote the recipe image preview in plain JavaScript and replaced method-based action links with `button_to` helpers.
 - Migrated app forms from `form_for` to `form_with` and enabled generated form IDs for compatibility with the existing feature specs.
-- Replaced `bootstrap-sass` and `sass-rails` with Bootstrap 5 and Dart Sass, added `app/assets/builds`, and updated the asset manifest to serve generated CSS.
-- Updated the Docker and CI workflows to run `rails dartsass:build` before serving or testing the application.
+- Replaced `bootstrap-sass` and `sass-rails` with Bootstrap 5, updated the asset manifest for the modern Rails asset layout, and kept the app on Sprockets-backed CSS compilation.
+- Updated the Docker and CI workflows to match the modernized frontend runtime and asset pipeline.
 - Verified the updated frontend stack with Docker builds, the full test suite, and browser smoke checks across the homepage and Devise auth pages.
 
 ### Rails 5.2 to 6.1 upgrade

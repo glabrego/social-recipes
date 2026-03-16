@@ -1,7 +1,7 @@
 module ApplicationHelper
   def recipe_image(recipe, options = {})
-    return unless recipe.photo?
+    return unless recipe.photo.attached?
 
-    image_tag(recipe.photo_url, options)
+    image_tag(url_for(recipe.photo), options)
   end
 end

@@ -1,86 +1,113 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_211_112_949) do
-  create_table 'food_types', force: :cascade do |t|
-    t.string   'name'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema[8.1].define(version: 2026_03_16_235000) do
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table 'kitchens', force: :cascade do |t|
-    t.string   'name'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table 'kitchens_users', id: false, force: :cascade do |t|
-    t.integer 'user_id',    null: false
-    t.integer 'kitchen_id', null: false
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table 'preferences', force: :cascade do |t|
-    t.string   'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "food_types", force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
+    t.string "name"
+    t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table 'recipes', force: :cascade do |t|
-    t.string   'name'
-    t.integer  'servings'
-    t.integer  'cook_time'
-    t.string   'difficulty'
-    t.text     'steps'
-    t.text     'ingredients'
-    t.string   'photo'
-    t.datetime 'created_at',    null: false
-    t.datetime 'updated_at',    null: false
-    t.integer  'kitchen_id'
-    t.integer  'food_type_id'
-    t.integer  'preference_id'
-    t.integer  'user_id'
+  create_table "kitchens", force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
+    t.string "name"
+    t.datetime "updated_at", precision: nil, null: false
   end
 
-  add_index 'recipes', ['food_type_id'], name: 'index_recipes_on_food_type_id'
-  add_index 'recipes', ['kitchen_id'], name: 'index_recipes_on_kitchen_id'
-  add_index 'recipes', ['preference_id'], name: 'index_recipes_on_preference_id'
-  add_index 'recipes', ['user_id'], name: 'index_recipes_on_user_id'
-
-  create_table 'recipes_users', id: false, force: :cascade do |t|
-    t.integer 'user_id',   null: false
-    t.integer 'recipe_id', null: false
+  create_table "kitchens_users", id: false, force: :cascade do |t|
+    t.integer "kitchen_id", null: false
+    t.integer "user_id", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string   'email',                  default: '', null: false
-    t.string   'encrypted_password',     default: '', null: false
-    t.string   'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer  'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.string   'current_sign_in_ip'
-    t.string   'last_sign_in_ip'
-    t.datetime 'created_at',                          null: false
-    t.datetime 'updated_at',                          null: false
-    t.boolean  'admin'
-    t.string   'name'
-    t.string   'location'
-    t.string   'twitter'
-    t.string   'facebook'
+  create_table "preferences", force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
+    t.string "title"
+    t.datetime "updated_at", precision: nil, null: false
   end
 
-  add_index 'users', ['email'], name: 'index_users_on_email', unique: true
-  add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "recipes", force: :cascade do |t|
+    t.integer "cook_time"
+    t.datetime "created_at", precision: nil, null: false
+    t.string "difficulty"
+    t.integer "food_type_id"
+    t.text "ingredients"
+    t.integer "kitchen_id"
+    t.string "name"
+    t.integer "preference_id"
+    t.integer "servings"
+    t.text "steps"
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
+    t.index ["food_type_id"], name: "index_recipes_on_food_type_id"
+    t.index ["kitchen_id"], name: "index_recipes_on_kitchen_id"
+    t.index ["preference_id"], name: "index_recipes_on_preference_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "recipes_users", id: false, force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.boolean "admin"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "current_sign_in_at", precision: nil
+    t.string "current_sign_in_ip"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "facebook"
+    t.datetime "last_sign_in_at", precision: nil
+    t.string "last_sign_in_ip"
+    t.string "location"
+    t.string "name"
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "reset_password_token"
+    t.integer "sign_in_count", default: 0, null: false
+    t.string "twitter"
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

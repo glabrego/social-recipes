@@ -4,7 +4,7 @@
     <div id="content" class="col-xs-12 col-sm-6 col-m-8">
       <h2><%= @recipe.name %></h2>
       <hr>
-      <%= image_tag(@recipe.photo_url, alt: @recipe.name ) %>
+      <%= recipe_image(@recipe, alt: @recipe.name) %>
       <p><strong>Kitchen:</strong> <%= @recipe.kitchen.name %></p>
       <p><strong>Food type:</strong> <%= @recipe.food_type.name%></p>
       <p><strong>Preference:</strong> <%= @recipe.preference.title %></p>

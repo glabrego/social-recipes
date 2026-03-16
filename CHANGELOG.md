@@ -4,6 +4,15 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Rails 5.2 to 6.1 upgrade
+
+- Upgraded the app from Rails `5.2.8.1` to Rails `6.0.6.1` and then to Rails `6.1.7.10`.
+- Moved the Docker runtime from Ruby `2.3.8` to Ruby `2.7.8` and regenerated the bundle with Bundler `2.4.22`.
+- Regenerated `Gemfile.lock` for native `arm64` and `x86_64` Linux platforms and updated the Rails-coupled gem set, including `rspec-rails`, `factory_bot_rails`, `web-console`, `sqlite3`, `pg`, `sass-rails`, `responders`, and RuboCop support gems.
+- Enabled Zeitwerk autoloading, added the Rails `6` asset manifest, and added a minimal `config/storage.yml` for framework compatibility.
+- Updated the recipe creation spec to persist selectable associations and replaced deprecated Devise error helper calls with the shared partial.
+- Verified Rails `6.1.7.10` boot, the Docker-based test suite, RuboCop linting, `rails zeitwerk:check`, and a browser smoke check across the homepage and Devise auth pages.
+
 ### Rails 5.0 to 5.2 upgrade
 
 - Bridged the application from Rails `4.2.11.3` to Rails `5.0.7.2`, then to `5.1.7`, and finally to Rails `5.2.8.1`.

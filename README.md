@@ -14,8 +14,8 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Stack
 
-- Ruby on Rails 5.2.8.1
-- Ruby 2.3.8 in Docker for compatibility with the original gem set
+- Ruby on Rails 6.1.7.10
+- Ruby 2.7.8 in Docker
 - SQLite in development and test
 - PostgreSQL gem included for production only
 - Devise for authentication
@@ -25,7 +25,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Running Locally
 
-The original dependency set does not install cleanly on the host macOS Ruby available on this machine. The reliable path is Docker.
+The reliable local path on this machine is Docker.
 
 ### Prerequisites
 
@@ -97,8 +97,10 @@ To make the project runnable on this machine without rewriting the application, 
 
 - `Dockerfile`
 - `docker-compose.yml`
+- `app/assets/config/manifest.js`
+- `config/storage.yml`
 
-The Docker image uses Ruby `2.3.8` and archived Debian package sources because the app depends on a historical gem set from 2015-2016.
+The Docker image now uses Ruby `2.7.8` and a modern Bundler lock so the app can run on Rails `6.1` while keeping the legacy frontend stack intact.
 
 ## Notes and Caveats
 
@@ -108,9 +110,9 @@ The Docker image uses Ruby `2.3.8` and archived Debian package sources because t
 
 ## Upgrade Notes
 
-- The app now runs on Rails `5.2.8.1` while still using Ruby `2.3.8` in Docker. That bridge requires a carefully pinned legacy gem set, including older `bcrypt`, `nokogiri`, `rails-dom-testing`, `carrierwave`, and `cloudinary` versions.
-- `rails-html-sanitizer 1.4.4` and `loofah 2.19.1` remain pinned to avoid a Nokogiri compatibility break under Ruby `2.3.8`.
-- Rails `5.2` introduces `ApplicationRecord`, and all app models now inherit from it instead of `ActiveRecord::Base`.
-- Boot and test runs emit deprecations from `autoprefixer-rails` using the old Sprockets processor API. That asset stack is a known follow-up item for the Rails `6.x` and frontend modernization phases.
-- SQLite emits a `represent_boolean_as_integer` deprecation on Rails `5.2`. The data and configuration need to be normalized before the Rails `6.x` upgrade.
-- Devise warns that `devise_error_messages!` is deprecated in the customized registration views. That should be switched to the shared partial before the next major Devise jump.
+- The app now runs on Rails `6.1.7.10` with Ruby `2.7.8` in Docker.
+- The Rails `6.x` bridge required regenerating `Gemfile.lock` with Bundler `2.4.22`, moving the Docker workflow to native `arm64` on this machine, and upgrading the test/tooling stack to modern Rails-compatible versions.
+- Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
+- Rails `6` requires `app/assets/config/manifest.js`, even though the app still uses the legacy Sprockets, jQuery, Turbolinks, and Bootstrap Sass frontend stack.
+- A minimal `config/storage.yml` is present because Rails `6.1` expects Active Storage configuration, even though the app still uses CarrierWave and Cloudinary for uploads.
+- Boot and test runs still emit warnings from legacy debugger and mail/network gems (`pry-byebug`, `net-protocol`) and the old frontend stack remains a known follow-up item for the frontend modernization phase.

@@ -4,6 +4,15 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Frontend runtime and asset modernization
+
+- Replaced `turbolinks` with `turbo-rails` and removed the jQuery-based runtime from the app asset manifest.
+- Rewrote the recipe image preview in plain JavaScript and replaced method-based action links with `button_to` helpers.
+- Migrated app forms from `form_for` to `form_with` and enabled generated form IDs for compatibility with the existing feature specs.
+- Replaced `bootstrap-sass` and `sass-rails` with Bootstrap 5 and Dart Sass, added `app/assets/builds`, and updated the asset manifest to serve generated CSS.
+- Updated the Docker and CI workflows to run `rails dartsass:build` before serving or testing the application.
+- Verified the updated frontend stack with Docker builds, the full test suite, and browser smoke checks across the homepage and Devise auth pages.
+
 ### Rails 5.2 to 6.1 upgrade
 
 - Upgraded the app from Rails `5.2.8.1` to Rails `6.0.6.1` and then to Rails `6.1.7.10`.

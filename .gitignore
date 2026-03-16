@@ -17,3 +17,5 @@
 /tmp
 /coverage
 /vendor/bundle
+/app/assets/builds/*
+!/app/assets/builds/.keep

@@ -14,7 +14,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Stack
 
-- Ruby on Rails 4.2.4
+- Ruby on Rails 4.2.11.3
 - Ruby 2.3.8 in Docker for compatibility with the original gem set
 - SQLite in development and test
 - PostgreSQL gem included for production only
@@ -105,3 +105,9 @@ The Docker image uses Ruby `2.3.8` and archived Debian package sources because t
 - `config/cloudinary.yml` now reads credentials from environment variables rather than committed secrets.
 - `db/seeds.rb` creates explicit records and no longer depends on test factories.
 - The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.
+
+## Upgrade Notes
+
+- The Rails patch upgrade to `4.2.11.3` requires pinning `rake` to `10.5.0` so the current `rspec-rails 3.4` task integration keeps working on this legacy stack.
+- `rails-html-sanitizer 1.4.4` and `loofah 2.19.1` are pinned to avoid a Nokogiri compatibility break under Ruby `2.3.8`.
+- Boot and test runs now emit Sprockets deprecation warnings through `autoprefixer-rails` and `sass-rails`. Those are expected follow-up items for the Rails `5.x` and frontend modernization phases.

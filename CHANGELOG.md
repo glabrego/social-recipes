@@ -2,6 +2,16 @@
 
 This changelog was reconstructed from the repository commit history because the project does not use historical tags or formal releases.
 
+## 2026-03-16
+
+### Rails 4.2 patch upgrade
+
+- Upgraded Rails from `4.2.4` to `4.2.11.3`.
+- Refreshed the compatible Rails `4.2` dependency set in `Gemfile.lock`.
+- Pinned `rake` back to `10.5.0` to preserve compatibility with the current `rspec-rails` task integration.
+- Pinned `rails-html-sanitizer 1.4.4` and `loofah 2.19.1` to keep the app compatible with the legacy Ruby and Nokogiri runtime.
+- Verified linting, the Docker-based test suite, app boot on Rails `4.2.11.3`, and a browser smoke check across the homepage and Devise auth pages.
+
 ## 2026-03-15
 
 ### Baseline hardening

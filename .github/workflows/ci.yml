@@ -12,8 +12,17 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build app image
-        run: docker compose build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: social-recipes-app:latest
+          cache-from: type=gha,scope=app-image
+          cache-to: type=gha,mode=max,scope=app-image
 
       - name: Run RuboCop
         run: docker compose run --rm app bash -lc "bundle exec rubocop --lint --force-exclusion app config db lib spec"
@@ -25,8 +34,17 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build app image
-        run: docker compose build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: social-recipes-app:latest
+          cache-from: type=gha,scope=app-image
+          cache-to: type=gha,mode=max,scope=app-image
 
       - name: Run test suite
         env:

@@ -14,11 +14,11 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Stack
 
-- Ruby on Rails 7.2.2.2
-- Ruby 3.1.6 in Docker
+- Ruby on Rails 8.1.2
+- Ruby 3.2.9 in Docker
 - SQLite in development and test
 - PostgreSQL gem included for production only
-- Devise for authentication
+- Devise 5 for authentication
 - CarrierWave with Cloudinary integration for recipe photos
 - Turbo Rails for frontend navigation/runtime
 - Bootstrap 5 with SassC/Sprockets for styling
@@ -101,7 +101,7 @@ To make the project runnable on this machine without rewriting the application, 
 - `app/assets/config/manifest.js`
 - `config/storage.yml`
 
-The Docker image now uses Ruby `3.1.6` and a modern Bundler lock so the app can run on Rails `7.2` with a current SQLite runtime.
+The Docker image now uses Ruby `3.2.9` and a modern Bundler lock so the app can run on Rails `8.1` with a current SQLite runtime.
 
 ## Notes and Caveats
 
@@ -112,11 +112,12 @@ The Docker image now uses Ruby `3.1.6` and a modern Bundler lock so the app can 
 
 ## Upgrade Notes
 
-- The app now runs on Rails `7.2.2.2` with Ruby `3.1.6` in Docker.
-- The Rails `7.x` bridge required regenerating `Gemfile.lock` with Bundler `2.4.22`, upgrading the Docker runtime to Debian Bookworm for a modern SQLite toolchain, and keeping the lock compatible with native `arm64` and Linux CI.
+- The app now runs on Rails `8.1.2` with Ruby `3.2.9` in Docker.
+- The Rails `8.x` bridge required another runtime bump, from Ruby `3.1.6` to `3.2.9`, because Rails `8.1` requires Ruby `>= 3.2`.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
 - The styling stack now uses Bootstrap 5 through the Sprockets pipeline with `sassc-rails`, so the Docker and CI commands no longer need a separate CSS build step.
-- Rails `7.2` required removing `config/secrets.yml`, setting `secret_key_base` explicitly in environment config, replacing deprecated test/RSpec settings, and moving the cache serialization format off the legacy `6.1` default.
+- The Rails `8.1` bridge also upgraded `sqlite3` to the `2.x` line, replaced the legacy `pry-byebug` debugging path with `debug`, and upgraded Devise to `5.0.x` to stay on supported route and Hotwire behavior.
+- Rails `7.2` had already removed `config/secrets.yml`, set `secret_key_base` explicitly in environment config, replaced deprecated test/RSpec settings, and moved the cache serialization format off the legacy `6.1` default.
 - A minimal `config/storage.yml` is present because Rails `6.1` expects Active Storage configuration, even though the app still uses CarrierWave and Cloudinary for uploads.
-- Boot and test runs still emit warnings from legacy debugger gems (`pry-byebug`). Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.
+- Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.

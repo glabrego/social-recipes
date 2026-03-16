@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.11.3'
+gem 'rake', '10.5.0'
 gem 'sqlite3', group: [:development, :test]
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -11,6 +12,8 @@ gem 'cloudinary'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'rails-html-sanitizer', '1.4.4'
+gem 'loofah', '2.19.1'
 
 group :development, :test do
   gem 'byebug'

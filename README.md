@@ -14,14 +14,14 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Stack
 
-- Ruby on Rails 6.1.7.10
-- Ruby 2.7.8 in Docker
+- Ruby on Rails 7.2.2.2
+- Ruby 3.1.6 in Docker
 - SQLite in development and test
 - PostgreSQL gem included for production only
 - Devise for authentication
 - CarrierWave with Cloudinary integration for recipe photos
 - Turbo Rails for frontend navigation/runtime
-- Bootstrap 5 with Dart Sass for styling
+- Bootstrap 5 with SassC/Sprockets for styling
 - RSpec, Capybara, FactoryBot, and SimpleCov for tests
 
 ## Running Locally
@@ -99,24 +99,24 @@ To make the project runnable on this machine without rewriting the application, 
 - `Dockerfile`
 - `docker-compose.yml`
 - `app/assets/config/manifest.js`
-- `app/assets/builds/.keep`
 - `config/storage.yml`
 
-The Docker image now uses Ruby `2.7.8` and a modern Bundler lock so the app can run on Rails `6.1` while keeping the legacy frontend stack intact.
+The Docker image now uses Ruby `3.1.6` and a modern Bundler lock so the app can run on Rails `7.2` with a current SQLite runtime.
 
 ## Notes and Caveats
 
 - `config/cloudinary.yml` now reads credentials from environment variables rather than committed secrets.
+- `config/secrets.yml` has been removed. Development and test use explicit environment config for `secret_key_base`, and production expects `SECRET_KEY_BASE`.
 - `db/seeds.rb` creates explicit records and no longer depends on test factories.
 - The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.
 
 ## Upgrade Notes
 
-- The app now runs on Rails `6.1.7.10` with Ruby `2.7.8` in Docker.
-- The Rails `6.x` bridge required regenerating `Gemfile.lock` with Bundler `2.4.22`, moving the Docker workflow to native `arm64` on this machine, and upgrading the test/tooling stack to modern Rails-compatible versions.
+- The app now runs on Rails `7.2.2.2` with Ruby `3.1.6` in Docker.
+- The Rails `7.x` bridge required regenerating `Gemfile.lock` with Bundler `2.4.22`, upgrading the Docker runtime to Debian Bookworm for a modern SQLite toolchain, and keeping the lock compatible with native `arm64` and Linux CI.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
-- The styling stack now uses Bootstrap 5 and Dart Sass. Rails builds CSS through `bundle exec rails dartsass:build`, and the Docker/CI commands were updated to run that build before serving or testing the app.
-- Rails `6` requires `app/assets/config/manifest.js`, and the asset manifest now links the generated CSS in `app/assets/builds`.
+- The styling stack now uses Bootstrap 5 through the Sprockets pipeline with `sassc-rails`, so the Docker and CI commands no longer need a separate CSS build step.
+- Rails `7.2` required removing `config/secrets.yml`, setting `secret_key_base` explicitly in environment config, replacing deprecated test/RSpec settings, and moving the cache serialization format off the legacy `6.1` default.
 - A minimal `config/storage.yml` is present because Rails `6.1` expects Active Storage configuration, even though the app still uses CarrierWave and Cloudinary for uploads.
-- Boot and test runs still emit warnings from legacy debugger and mail/network gems (`pry-byebug`, `net-protocol`). Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.
+- Boot and test runs still emit warnings from legacy debugger gems (`pry-byebug`). Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.

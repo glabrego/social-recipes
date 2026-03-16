@@ -1,4 +1,4 @@
-class Recipe < ActiveRecord::Base
+class Recipe < ApplicationRecord
   DIFFICULTY_OPTIONS = %w(Fácil Médio Difícil).freeze
   mount_uploader :photo, PhotoUploader
   belongs_to :kitchen

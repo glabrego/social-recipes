@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.7.2'
+gem 'rails', '5.2.8.1'
 gem 'sqlite3', group: [:development, :test]
 gem 'sass-rails', '~> 5.0.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 4.3'
 gem 'turbolinks', '~> 5.0'
-gem 'carrierwave'
-gem 'cloudinary'
+gem 'carrierwave', '~> 2.2.6'
+gem 'cloudinary', '~> 1.24'
 gem 'devise', '~> 4.9'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'

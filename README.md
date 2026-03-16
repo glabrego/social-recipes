@@ -19,7 +19,8 @@ The UI is a mix of English labels and Portuguese messages/content.
 - SQLite in development and test
 - PostgreSQL gem included for production only
 - Devise 5 for authentication
-- CarrierWave with Cloudinary integration for recipe photos
+- Active Storage for recipe photos
+- Cloudinary-backed Active Storage service in production, Disk service in development and test
 - Turbo Rails for frontend navigation/runtime
 - Bootstrap 5 with SassC/Sprockets for styling
 - RSpec, Capybara, FactoryBot, and SimpleCov for tests
@@ -105,7 +106,7 @@ The Docker image now uses Ruby `3.2.9` and a modern Bundler lock so the app can 
 
 ## Notes and Caveats
 
-- `config/cloudinary.yml` now reads credentials from environment variables rather than committed secrets.
+- Cloudinary credentials now live in `config/storage.yml` for the production Active Storage service and read from environment variables.
 - `config/secrets.yml` has been removed. Development and test use explicit environment config for `secret_key_base`, and production expects `SECRET_KEY_BASE`.
 - `db/seeds.rb` creates explicit records and no longer depends on test factories.
 - The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.
@@ -118,6 +119,8 @@ The Docker image now uses Ruby `3.2.9` and a modern Bundler lock so the app can 
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
 - The styling stack now uses Bootstrap 5 through the Sprockets pipeline with `sassc-rails`, so the Docker and CI commands no longer need a separate CSS build step.
 - The Rails `8.1` bridge also upgraded `sqlite3` to the `2.x` line, replaced the legacy `pry-byebug` debugging path with `debug`, and upgraded Devise to `5.0.x` to stay on supported route and Hotwire behavior.
+- Uploads now use Active Storage instead of CarrierWave. The app installs the Active Storage tables, stores files on Disk in development/test, and uses Cloudinary as the configured production service.
+- The legacy `recipes.photo` column and CarrierWave uploader were removed as part of the migration, so old CarrierWave-backed photo paths are not retained by this branch.
 - Rails `7.2` had already removed `config/secrets.yml`, set `secret_key_base` explicitly in environment config, replaced deprecated test/RSpec settings, and moved the cache serialization format off the legacy `6.1` default.
-- A minimal `config/storage.yml` is present because Rails `6.1` expects Active Storage configuration, even though the app still uses CarrierWave and Cloudinary for uploads.
+- `config/storage.yml` is now part of the active upload path rather than just a framework compatibility file.
 - Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.

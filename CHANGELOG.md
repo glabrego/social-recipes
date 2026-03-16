@@ -4,6 +4,15 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Rails 5.0 to 5.2 upgrade
+
+- Bridged the application from Rails `4.2.11.3` to Rails `5.0.7.2`, then to `5.1.7`, and finally to Rails `5.2.8.1`.
+- Upgraded the supporting gem set needed for the Rails `5.x` line, including `devise`, `rspec-rails`, `web-console`, `jquery-rails`, `turbolinks`, `capybara`, `carrierwave`, and `cloudinary`.
+- Added `ApplicationRecord` and migrated all models to inherit from it.
+- Updated test environment config to use `public_file_server` and removed Rails `4.x`-only configuration.
+- Verified linting, the Docker-based test suite, app boot on Rails `5.2.8.1`, and a browser smoke check across the homepage and Devise auth pages.
+- Documented the remaining Rails `6.x` blockers exposed by this phase: Sprockets processor deprecations, SQLite boolean serialization, and Devise form helper deprecations.
+
 ### Rails 4.2 patch upgrade
 
 - Upgraded Rails from `4.2.4` to `4.2.11.3`.

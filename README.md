@@ -14,7 +14,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 
 ## Stack
 
-- Ruby on Rails 4.2.11.3
+- Ruby on Rails 5.2.8.1
 - Ruby 2.3.8 in Docker for compatibility with the original gem set
 - SQLite in development and test
 - PostgreSQL gem included for production only
@@ -82,13 +82,13 @@ docker-compose down
 ## Running Tests
 
 ```bash
-docker-compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rake db:create db:schema:load && bundle exec rspec"
+docker-compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rails db:environment:set RAILS_ENV=test && bundle exec rake db:create db:schema:load && bundle exec rspec"
 ```
 
 Expected result from the validated environment:
 
 ```text
-26 examples, 0 failures
+30 examples, 0 failures
 ```
 
 ## Files Added For Compatibility
@@ -108,6 +108,9 @@ The Docker image uses Ruby `2.3.8` and archived Debian package sources because t
 
 ## Upgrade Notes
 
-- The Rails patch upgrade to `4.2.11.3` requires pinning `rake` to `10.5.0` so the current `rspec-rails 3.4` task integration keeps working on this legacy stack.
-- `rails-html-sanitizer 1.4.4` and `loofah 2.19.1` are pinned to avoid a Nokogiri compatibility break under Ruby `2.3.8`.
-- Boot and test runs now emit Sprockets deprecation warnings through `autoprefixer-rails` and `sass-rails`. Those are expected follow-up items for the Rails `5.x` and frontend modernization phases.
+- The app now runs on Rails `5.2.8.1` while still using Ruby `2.3.8` in Docker. That bridge requires a carefully pinned legacy gem set, including older `bcrypt`, `nokogiri`, `rails-dom-testing`, `carrierwave`, and `cloudinary` versions.
+- `rails-html-sanitizer 1.4.4` and `loofah 2.19.1` remain pinned to avoid a Nokogiri compatibility break under Ruby `2.3.8`.
+- Rails `5.2` introduces `ApplicationRecord`, and all app models now inherit from it instead of `ActiveRecord::Base`.
+- Boot and test runs emit deprecations from `autoprefixer-rails` using the old Sprockets processor API. That asset stack is a known follow-up item for the Rails `6.x` and frontend modernization phases.
+- SQLite emits a `represent_boolean_as_integer` deprecation on Rails `5.2`. The data and configuration need to be normalized before the Rails `6.x` upgrade.
+- Devise warns that `devise_error_messages!` is deprecated in the customized registration views. That should be switched to the shared partial before the next major Devise jump.

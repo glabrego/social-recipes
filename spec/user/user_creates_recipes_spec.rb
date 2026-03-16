@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'User creates recipes' do
   scenario 'successfully' do
     user = FactoryBot.create(:user)
-    food_type = FactoryBot.build(:food_type)
-    kitchen = FactoryBot.build(:kitchen)
-    preference = FactoryBot.build(:preference)
+    food_type = FactoryBot.create(:food_type)
+    kitchen = FactoryBot.create(:kitchen)
+    preference = FactoryBot.create(:preference)
     recipe = FactoryBot.build(:recipe)
 
     visit new_user_session_path

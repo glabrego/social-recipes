@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:2.3.8
+FROM ruby:2.7.8
 
 ENV APP_HOME=/app \
     BUNDLE_PATH=/bundle \
@@ -7,11 +7,7 @@ ENV APP_HOME=/app \
 
 WORKDIR $APP_HOME
 
-RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/sources.list && \
-    sed -i 's|security.debian.org/debian-security|archive.debian.org/debian-security|g' /etc/apt/sources.list && \
-    sed -i '/-updates/d' /etc/apt/sources.list && \
-    printf 'Acquire::Check-Valid-Until "false";\nAcquire::AllowInsecureRepositories "true";\nAcquire::AllowDowngradeToInsecureRepositories "true";\n' > /etc/apt/apt.conf.d/99archive && \
-    apt-get update && apt-get install -y --no-install-recommends --allow-unauthenticated \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libxml2-dev \
     libxslt1-dev \
@@ -20,12 +16,13 @@ RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/source
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem install bundler -v 1.17.3
+RUN gem install bundler -v 2.4.22 --no-document
 
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle _1.17.3_ config build.nokogiri --use-system-libraries && \
-    (bundle _1.17.3_ install --without production > /tmp/bundle.log 2>&1 || (tail -n 200 /tmp/bundle.log && false))
+RUN bundle _2.4.22_ config set build.nokogiri --use-system-libraries && \
+    bundle _2.4.22_ config set without 'production' && \
+    (bundle _2.4.22_ install > /tmp/bundle.log 2>&1 || (tail -n 200 /tmp/bundle.log && false))
 
 COPY . .
 

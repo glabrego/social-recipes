@@ -1,8 +1,12 @@
-Documentation:
+plugins:
+  - rubocop-rails
+
+Style/Documentation:
   Enabled: false
 Rails:
   Enabled: true
 AllCops:
+  NewCops: disable
   Include:
     - '**/Rakefile'
     - '**/config.ru'

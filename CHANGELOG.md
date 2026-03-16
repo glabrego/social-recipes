@@ -4,6 +4,14 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Rails 7.2 to 8.1 upgrade
+
+- Upgraded the app from Rails `7.2.2.2` through `8.0.3` to Rails `8.1.2`.
+- Moved the Docker runtime from Ruby `3.1.6` to Ruby `3.2.9`, which is required for the Rails `8.1` line.
+- Upgraded `sqlite3` to the `2.x` series, moved from Devise `4.9` to `5.0.3`, and replaced the legacy `pry-byebug` debugging path with the modern `debug` gem.
+- Kept the asset strategy conservative on Sprockets with `sassc-rails`, which continued to boot cleanly on Rails `8.1`.
+- Verified Rails `8.1.2` boot, RuboCop linting, the Docker-based test suite, `rails zeitwerk:check`, and browser smoke checks against the live app container.
+
 ### Rails 6.1 to 7.2 upgrade
 
 - Upgraded the app from Rails `6.1.7.10` to `7.1.5.2` and then to Rails `7.2.2.2`.

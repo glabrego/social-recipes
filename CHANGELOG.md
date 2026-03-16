@@ -4,6 +4,14 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-15
 
+### Baseline hardening
+
+- Moved Cloudinary configuration to environment variables instead of committing plaintext credentials.
+- Replaced factory-based seeding with explicit records in `db/seeds.rb`.
+- Added focused feature coverage for sign-up, sign-in, recipe updates, and the login requirement for recipe creation.
+- Hardened recipe image rendering so pages still load when Cloudinary is not configured and no photo is present.
+- Added a GitHub Actions workflow that runs the Docker-based test suite.
+
 ### Dependency cleanup
 
 - Removed app-level usage of `responders` and replaced `respond_with` controller flows with explicit redirects and renders.

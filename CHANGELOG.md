@@ -10,7 +10,7 @@ This changelog was reconstructed from the repository commit history because the 
 - Replaced factory-based seeding with explicit records in `db/seeds.rb`.
 - Added focused feature coverage for sign-up, sign-in, recipe updates, and the login requirement for recipe creation.
 - Hardened recipe image rendering so pages still load when Cloudinary is not configured and no photo is present.
-- Added a GitHub Actions workflow that runs the Docker-based test suite.
+- Added a GitHub Actions workflow that runs Docker-based RuboCop linting and the test suite.
 
 ### Dependency cleanup
 

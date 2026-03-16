@@ -6,7 +6,6 @@ feature 'User keeps your recipes' do
     user2 = FactoryBot.create(:user, email: 'giga@gmail.com', admin: false)
     recipe = FactoryBot.create(:recipe, user_id: user.id)
     recipe2 = FactoryBot.create(:recipe, user_id: user2.id)
-    food_type = FactoryBot.build(:food_type)
 
     visit new_user_session_path
 

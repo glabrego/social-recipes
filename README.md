@@ -39,6 +39,16 @@ If needed:
 colima start
 ```
 
+### Configuration
+
+Cloudinary credentials are no longer committed in the repository. Export these variables before starting the app if you want upload integration configured:
+
+```bash
+export CLOUDINARY_CLOUD_NAME=your-cloud-name
+export CLOUDINARY_API_KEY=your-api-key
+export CLOUDINARY_API_SECRET=your-api-secret
+```
+
 ### Build the app
 
 ```bash
@@ -92,6 +102,6 @@ The Docker image uses Ruby `2.3.8` and archived Debian package sources because t
 
 ## Notes and Caveats
 
-- `config/cloudinary.yml` contains hard-coded credentials and should be treated as sensitive configuration.
-- `db/seeds.rb` uses `FactoryBot`, which is acceptable for local/dev use here because the Docker image installs the development and test gems, but it is not a production-grade seed strategy.
+- `config/cloudinary.yml` now reads credentials from environment variables rather than committed secrets.
+- `db/seeds.rb` creates explicit records and no longer depends on test factories.
 - The app is functionally small and spec coverage is high, but authorization in controllers is still hand-rolled rather than centralized.

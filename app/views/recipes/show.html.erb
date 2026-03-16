@@ -16,9 +16,9 @@
 
       <%= @recipe.fans.count %> <%= 'Favoritaram' %>
 
-      <%= link_to 'Excluir', recipe_path(@recipe), method: "delete" %><br>
-      <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: "post"%><br>
-      <%= link_to 'Remover Favorita', favorite_recipe_path(@recipe), method: "delete"%><br>
+      <%= button_to 'Excluir', recipe_path(@recipe), method: :delete %><br>
+      <%= button_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %><br>
+      <%= button_to 'Remover Favorita', favorite_recipe_path(@recipe), method: :delete %><br>
 
     </div>
     <div id="sidebar" class="col-xs-6 col-m-4">

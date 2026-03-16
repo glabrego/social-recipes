@@ -1,0 +1,30 @@
+@import "bootstrap";
+
+body {
+  padding-top: 5rem;
+}
+
+.form_group {
+  margin-bottom: 1rem;
+}
+
+.image-frame {
+  margin-top: 1rem;
+}
+
+.image-frame img {
+  height: auto;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-m-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+
+  .col-m-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+}

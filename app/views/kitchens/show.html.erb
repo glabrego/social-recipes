@@ -12,8 +12,8 @@
       <% end  %>
     </div>
     <div id="sidebar" class="col-xs-6 col-m-4">
-      <%= link_to 'Favoritar', like_kitchen_path(@kitchen), method: "post"%><br>
-      <%= link_to 'Remover Favorita', like_kitchen_path(@kitchen), method: "delete"%><br>
+      <%= button_to 'Favoritar', like_kitchen_path(@kitchen), method: :post %><br>
+      <%= button_to 'Remover Favorita', like_kitchen_path(@kitchen), method: :delete %><br>
     </div>
   </div>
 </div>

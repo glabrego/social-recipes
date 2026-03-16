@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '6.1.7.10'
+gem 'rails', '7.2.2.2'
 gem 'sqlite3', '~> 1.4.2', group: [:development, :test]
-gem 'dartsass-rails', '~> 0.5'
+gem 'sprockets-rails'
+gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbo-rails', '~> 1.5'
 gem 'carrierwave', '~> 2.2.6'
@@ -18,7 +19,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'pry-byebug'
-  gem 'rspec-rails', '~> 5.1'
+  gem 'rspec-rails', '~> 7.0'
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'rubocop', '~> 1.63', require: false
   gem 'rubocop-rails', '~> 2.25', require: false

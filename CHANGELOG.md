@@ -4,6 +4,14 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Upload storage migration
+
+- Replaced CarrierWave with Active Storage for recipe photos.
+- Added the Active Storage tables, configured Disk storage for development and test, and configured Cloudinary as the production Active Storage service.
+- Removed the legacy `recipes.photo` column, the CarrierWave uploader, and the old `config/cloudinary.yml` path in favor of `config/storage.yml`.
+- Added a feature spec that uploads a recipe photo and verifies the attachment renders in the app.
+- Verified the upload migration with Docker-based linting, the full test suite, and live app smoke checks on the Rails `8.1` baseline.
+
 ### Rails 7.2 to 8.1 upgrade
 
 - Upgraded the app from Rails `7.2.2.2` through `8.0.3` to Rails `8.1.2`.

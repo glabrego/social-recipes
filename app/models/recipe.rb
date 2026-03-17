@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   DIFFICULTY_OPTIONS = %w(Fácil Médio Difícil).freeze
-  mount_uploader :photo, PhotoUploader
+  has_one_attached :photo
   belongs_to :kitchen
   belongs_to :food_type
   belongs_to :preference

@@ -48,12 +48,12 @@ class RecipesController < ApplicationController
   end
 
   def favorite
-    unless @recipe.fans.exists?(current_user.id)
-      add_fan
-      redirect_to @recipe, notice: 'Receita adicionada as favoritas!'
-    else
-      remove_fan
+    if request.delete?
+      remove_fan if @recipe.fans.exists?(current_user.id)
       redirect_to @recipe, notice: 'Receita removida das favoritas!'
+    else
+      add_fan unless @recipe.fans.exists?(current_user.id)
+      redirect_to @recipe, notice: 'Receita adicionada as favoritas!'
     end
   end
 

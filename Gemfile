@@ -10,26 +10,27 @@ gem 'cloudinary', '~> 2.4'
 gem 'devise', '~> 5.0'
 gem 'responders', '~> 3.2'
 gem 'bootstrap', '~> 5.3'
+gem 'puma', '~> 7.1'
 gem 'nokogiri', '~> 1.15'
 gem 'bcrypt', '~> 3.1'
-gem 'ffi', '< 1.17'
+gem 'ffi', '~> 1.17'
 gem 'observer'
 
 group :development, :test do
   gem 'debug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 7.0'
+  gem 'rspec-rails', '~> 8.0'
   gem 'factory_bot_rails', '~> 6.5'
   gem 'rubocop', '~> 1.63', require: false
   gem 'rubocop-rails', '~> 2.25', require: false
-  gem 'capybara', '~> 3.39'
+  gem 'capybara', '~> 3.40'
   gem 'simplecov', require: false
 end
 
 group :development do
-  gem 'web-console', '~> 4.2'
+  gem 'web-console', '~> 4.3'
 end
 
 group :production do
-  gem 'pg', '~> 1.5.9'
+  gem 'pg', '~> 1.6'
 end

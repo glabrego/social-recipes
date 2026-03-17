@@ -2,6 +2,16 @@
 
 This changelog was reconstructed from the repository commit history because the project does not use historical tags or formal releases.
 
+## 2026-03-17
+
+### App experience redesign
+
+- Redesigned the home page, recipe cards and detail views, taxonomy pages, profile page, and authentication and admin forms with a calmer editorial UI.
+- Reworked the shared layout and navigation with active states, richer page framing, responsive spacing, and light/dark-aware styling polish across the app.
+- Improved recipe presentation with clearer metadata, stronger image treatment, and more intentional call-to-action placement on listing and detail screens.
+- Expanded `db/seeds.rb` with a richer development recipe catalog and remote photos so visual QA is easier during local development.
+- Verified Docker-based RuboCop linting, the full test suite, browser smoke checks on `/`, `/users/sign_in`, and `/users/sign_up`, and `bundle exec rails db:seed`.
+
 ## 2026-03-16
 
 ### Rails 8 asset stack modernization

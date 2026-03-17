@@ -42,8 +42,14 @@
         </div>
 
         <div class="recipe-grid">
-          <% @favorites.each do |recipe| %>
-            <%= render recipe %>
+          <% if @favorites.any? %>
+            <% @favorites.each do |recipe| %>
+              <%= render recipe %>
+            <% end %>
+          <% else %>
+            <div class="empty-state">
+              No favorites yet. Save a recipe to give this section some weight.
+            </div>
           <% end %>
         </div>
       </section>
@@ -58,8 +64,14 @@
         </div>
 
         <div class="recipe-grid">
-          <% @recipes.each do |recipe| %>
-            <%= render recipe %>
+          <% if @recipes.any? %>
+            <% @recipes.each do |recipe| %>
+              <%= render recipe %>
+            <% end %>
+          <% else %>
+            <div class="empty-state">
+              No recipes have been published yet. Start the collection with the first dish.
+            </div>
           <% end %>
         </div>
       </section>

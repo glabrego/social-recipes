@@ -188,7 +188,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.1-x86_64-linux-gnu)
       racc (~> 1.4)
-    observer (0.1.2)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
     parallel (1.27.0)
@@ -372,14 +371,11 @@ DEPENDENCIES
   debug
   devise (~> 5.0)
   factory_bot_rails (~> 6.5)
-  ffi (~> 1.17)
   nokogiri (~> 1.15)
-  observer
   pg (~> 1.6)
   pry-rails
   puma (~> 7.1)
   rails (= 8.1.2)
-  responders (~> 3.2)
   rspec-rails (~> 8.0)
   rubocop (~> 1.63)
   rubocop-rails (~> 2.25)

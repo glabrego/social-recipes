@@ -392,4 +392,4 @@ DEPENDENCIES
   web-console (~> 4.3)
 
 BUNDLED WITH
-   2.4.22
+  4.0.8

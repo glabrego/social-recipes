@@ -13,24 +13,24 @@ feature 'User uploads a recipe photo' do
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit new_recipe_path
 
-    fill_in 'Name', with: 'Temaki especial'
+    fill_in 'Recipe title', with: 'Special temaki'
     select kitchen.name, from: 'recipe_kitchen_id'
     select food_type.name, from: 'recipe_food_type_id'
     select preference.title, from: 'recipe_preference_id'
-    fill_in 'Servings', with: 2
-    fill_in 'Cook time', with: 15
-    select 'Médio', from: 'recipe_difficulty'
-    fill_in 'Ingredients', with: 'Salmão e arroz'
-    fill_in 'Steps', with: 'Monte o temaki'
+    fill_in 'Serves', with: 2
+    fill_in 'Cooking time', with: 15
+    select 'Medium', from: 'recipe_difficulty'
+    fill_in 'Ingredients', with: 'Salmon and rice'
+    fill_in 'Instructions', with: 'Assemble the temaki'
     attach_file 'Photo', Rails.root.join('spec/fixtures/files/recipe-photo.svg')
 
-    click_on 'Criar Receita'
+    click_on 'Publish recipe'
 
-    expect(page).to have_selector("img[alt='Temaki especial']")
+    expect(page).to have_selector("img[alt='Special temaki']")
     expect(Recipe.last.photo).to be_attached
   end
 
@@ -44,11 +44,11 @@ feature 'User uploads a recipe photo' do
     login_user(user)
 
     visit edit_recipe_path(recipe)
-    fill_in 'Name', with: 'Temaki atualizado'
+    fill_in 'Recipe title', with: 'Updated temaki'
 
-    click_on 'Salvar Receita'
+    click_on 'Save changes'
 
-    expect(page).to have_content('Temaki atualizado')
+    expect(page).to have_content('Updated temaki')
     expect(recipe.reload.photo).to be_attached
     expect(recipe.photo.blob_id).to eq(original_blob_id)
   end
@@ -63,12 +63,12 @@ feature 'User uploads a recipe photo' do
     login_user(user)
 
     visit edit_recipe_path(recipe)
-    fill_in 'Name', with: 'Temaki com nova foto'
+    fill_in 'Recipe title', with: 'Temaki with a new photo'
     attach_file 'Photo', replacement_photo_path
 
-    click_on 'Salvar Receita'
+    click_on 'Save changes'
 
-    expect(page).to have_content('Temaki com nova foto')
+    expect(page).to have_content('Temaki with a new photo')
     expect(recipe.reload.photo).to be_attached
     expect(recipe.photo.blob_id).not_to eq(original_blob_id)
   end

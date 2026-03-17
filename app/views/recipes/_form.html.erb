@@ -7,15 +7,15 @@
   </div>
   <div class="form_group">
     <%= f.label :kitchen_id %>
-    <%= f.collection_select :kitchen_id, @kitchens, :id, :name, {prompt: 'Cozinha Gastronônomica'}, {class: "form-control"} %>
+    <%= f.collection_select :kitchen_id, @kitchens, :id, :name, { prompt: 'Select a cuisine' }, { class: 'form-control' } %>
   </div>
   <div class="form_group">
     <%= f.label :food_type_id %>
-    <%= f.collection_select :food_type_id, @food_types, :id, :name, {prompt: 'Tipo de Comida'}, {class: "form-control"}%>
+    <%= f.collection_select :food_type_id, @food_types, :id, :name, { prompt: 'Select a dish type' }, { class: 'form-control' } %>
   </div>
   <div class="form_group">
     <%= f.label :preference_id %>
-    <%= f.collection_select :preference_id, @preferences, :id, :title, {prompt: 'Preferência'}, {class: "form-control"} %>
+    <%= f.collection_select :preference_id, @preferences, :id, :title, { prompt: 'Select a dietary preference' }, { class: 'form-control' } %>
   </div>
   <div class="form_group">
     <%= f.label :servings %>
@@ -27,7 +27,7 @@
   </div>
   <div class="form_group">
     <%= f.label :difficulty %>
-    <%= f.select :difficulty, options_for_select(Recipe::DIFFICULTY_OPTIONS), {prompt: 'Nível de Dificuldade'}, {class: "form-control"} %>
+    <%= f.select :difficulty, options_for_select(Recipe::DIFFICULTY_OPTIONS, @recipe.difficulty), { prompt: 'Select a difficulty level' }, { class: 'form-control' } %>
   </div>
   <div class="form_group">
     <%= f.label :ingredients %>

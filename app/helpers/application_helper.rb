@@ -8,4 +8,8 @@ module ApplicationHelper
       content_tag(:div, recipe.name.to_s.first(2).upcase, class: [css_class, 'recipe-visual--placeholder'].compact.join(' '))
     end
   end
+
+  def saved_count_label(count)
+    "#{count} #{'save'.pluralize(count)}"
+  end
 end

@@ -8,9 +8,9 @@ feature 'Admin creates preferences' do
 
     visit new_preference_path
 
-    fill_in 'Title', with: preference.title
+    fill_in 'Dietary preference name', with: preference.title
 
-    click_on 'Criar Preferência'
+    click_on 'Add dietary preference'
 
     expect(page).to have_content preference.title
   end
@@ -22,9 +22,9 @@ feature 'Admin creates preferences' do
 
     visit new_preference_path
 
-    fill_in 'Title', with: preference.title
+    fill_in 'Dietary preference name', with: preference.title
 
-    click_on 'Criar Preferência'
+    click_on 'Add dietary preference'
 
     expect(current_path). to eq root_path
   end

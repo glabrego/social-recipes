@@ -2,19 +2,19 @@
   <section class="page-intro page-intro--split">
     <div>
       <p class="eyebrow">Account settings</p>
-      <h1>Refine your profile without losing the calm.</h1>
-      <p class="page-intro__body">Update your public details, refresh your password, or close the account if you no longer need it.</p>
+      <h1>Update your profile and account details.</h1>
+      <p class="page-intro__body">Change your public profile, update your password, or close your account if you no longer need it.</p>
     </div>
 
     <aside class="info-card">
-      <p class="eyebrow">Profile care</p>
-      <h3>Keep your details current</h3>
-      <p>Your profile powers saved kitchens, published recipes, and the reading rhythm of the app.</p>
+      <p class="eyebrow">Keep it current</p>
+      <h3>Make your profile easier to recognize</h3>
+      <p>Your profile powers your saved recipes, saved cuisines, and published dishes.</p>
     </aside>
   </section>
 
   <section class="section-card section-card--form">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <h2>Edit account</h2>
 
     <%= form_with model: resource, scope: resource_name, url: registration_path(resource_name), method: :put, local: true, class: 'editor-form' do |f| %>
       <%= render 'devise/shared/error_messages', resource: resource %>
@@ -46,12 +46,12 @@
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p class="flash flash--notice">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <p class="flash flash--notice">Waiting for email confirmation: <%= resource.unconfirmed_email %></p>
         <% end %>
 
         <div class="form_group">
           <%= f.label :password %>
-          <span class="form-hint">Leave blank if you do not want to change it</span>
+          <span class="form-hint">Leave blank if you want to keep your current password</span>
           <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
         </div>
 
@@ -62,12 +62,12 @@
 
         <div class="form_group form_group--full">
           <%= f.label :current_password %>
-          <span class="form-hint">We need your current password to confirm these changes</span>
+          <span class="form-hint">Enter your current password to save these changes</span>
           <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
         </div>
 
         <div class="form_group form_group--full">
-          <%= f.submit 'Update', class: 'button button--primary' %>
+          <%= f.submit 'Save changes', class: 'button button--primary' %>
         </div>
       </div>
     <% end %>
@@ -76,13 +76,13 @@
 
     <div class="content-stack">
       <div>
-        <p class="eyebrow">Account removal</p>
-        <h3>Cancel my account</h3>
-        <p class="page-intro__body">This permanently removes your access to saved recipes and profile actions.</p>
+        <p class="eyebrow">Close account</p>
+        <h3>Delete my account</h3>
+        <p class="page-intro__body">This permanently removes your account access, saved recipes, and profile actions.</p>
       </div>
 
       <div class="action-row">
-        <%= button_to 'Cancel my account', registration_path(resource_name), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button button--ghost' %>
+        <%= button_to 'Delete account', registration_path(resource_name), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button button--ghost' %>
         <%= link_to 'Back to profile', user_path(resource), class: 'button button--secondary' %>
       </div>
     </div>

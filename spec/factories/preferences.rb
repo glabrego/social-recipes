@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :preference do
-    title { 'Sem lactose' }
+    title { 'Lactose-free' }
   end
 end

@@ -11,7 +11,7 @@
       <span><%= recipe.difficulty %></span>
     </p>
     <div class="recipe-card__footer">
-      <span><%= pluralize(recipe.fans.count, 'favorite') %></span>
+      <span><%= saved_count_label(recipe.fans.count) %></span>
       <span><%= recipe.cook_time %> min</span>
     </div>
   </div>

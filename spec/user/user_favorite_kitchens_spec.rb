@@ -7,9 +7,9 @@ feature 'User favorite kitchen' do
     login_user
 
     visit kitchen_path(kitchen)
-    click_on 'Favoritar'
+    click_on 'Save cuisine'
 
-    expect(page).to have_content 'Cozinha adicionada as favoritas!'
+    expect(page).to have_content 'Cuisine saved to your profile.'
   end
 
   scenario 'and remove favorited kitchen' do
@@ -18,10 +18,10 @@ feature 'User favorite kitchen' do
     login_user
 
     visit kitchen_path(kitchen)
-    click_on 'Favoritar'
-    click_on 'Remover Favorita'
+    click_on 'Save cuisine'
+    click_on 'Remove from saved'
 
-    expect(page).to have_content 'Cozinha removida das favoritas!'
+    expect(page).to have_content 'Cuisine removed from your saved list.'
   end
 
   scenario 'and see users favorites' do
@@ -31,7 +31,7 @@ feature 'User favorite kitchen' do
     login_user(user)
 
     visit kitchen_path(kitchen)
-    click_on 'Favoritar'
+    click_on 'Save cuisine'
 
     visit user_path(user)
 

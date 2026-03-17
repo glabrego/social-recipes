@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  DIFFICULTY_OPTIONS = %w(Fácil Médio Difícil).freeze
+  DIFFICULTY_OPTIONS = %w(Easy Medium Hard).freeze
   has_one_attached :photo
   belongs_to :kitchen
   belongs_to :food_type

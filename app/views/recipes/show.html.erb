@@ -7,24 +7,24 @@
     <div class="recipe-hero__copy">
       <p class="eyebrow"><%= @recipe.kitchen.name %> · <%= @recipe.food_type.name %></p>
       <h1><%= @recipe.name %></h1>
-      <p class="lede">A <%= @recipe.preference.title.downcase %> recipe with a <%= @recipe.difficulty.downcase %> rhythm, made for <%= @recipe.servings %> and ready in <%= @recipe.cook_time %>.</p>
+      <p class="lede">A <%= @recipe.preference.title.downcase %> recipe that serves <%= @recipe.servings %> and is ready in <%= @recipe.cook_time %> minutes.</p>
 
       <div class="meta-strip">
-        <span class="meta-pill"><strong>Preference</strong><%= @recipe.preference.title %></span>
+        <span class="meta-pill"><strong>Dietary preference</strong><%= @recipe.preference.title %></span>
         <span class="meta-pill"><strong>Difficulty</strong><%= @recipe.difficulty %></span>
-        <span class="meta-pill"><strong>Cook time</strong><%= @recipe.cook_time %></span>
-        <span class="meta-pill"><strong>Favorites</strong><%= pluralize(@recipe.fans.count, 'Favoritaram') %></span>
+        <span class="meta-pill"><strong>Cooking time</strong><%= @recipe.cook_time %> min</span>
+        <span class="meta-pill"><strong>Saved</strong><%= saved_count_label(@recipe.fans.count) %></span>
       </div>
 
       <div class="action-row">
         <% if user_signed_in? %>
           <% if current_user.id == @recipe.user_id %>
-            <%= link_to 'Editar Receita', edit_recipe_path(@recipe), class: 'button button--secondary' %>
-            <%= button_to 'Excluir', recipe_path(@recipe), method: :delete, class: 'button button--ghost' %>
+            <%= link_to 'Edit recipe', edit_recipe_path(@recipe), class: 'button button--secondary' %>
+            <%= button_to 'Delete recipe', recipe_path(@recipe), method: :delete, class: 'button button--ghost' %>
           <% end %>
 
-          <%= button_to 'Favoritar', favorite_recipe_path(@recipe), method: :post, class: 'button button--primary' %>
-          <%= button_to 'Remover Favorita', favorite_recipe_path(@recipe), method: :delete, class: 'button button--ghost' %>
+          <%= button_to 'Save recipe', favorite_recipe_path(@recipe), method: :post, class: 'button button--primary' %>
+          <%= button_to 'Remove from saved', favorite_recipe_path(@recipe), method: :delete, class: 'button button--ghost' %>
         <% else %>
           <%= link_to 'Log in to save this recipe', new_user_session_path, class: 'button button--primary' %>
         <% end %>
@@ -48,7 +48,7 @@
         <div class="section-card__header">
           <div>
             <p class="eyebrow">How to make it</p>
-            <h2>Steps</h2>
+            <h2>Instructions</h2>
           </div>
         </div>
         <div class="prose-block"><%= simple_format(@recipe.steps) %></div>
@@ -60,19 +60,19 @@
         <p class="eyebrow">Recipe details</p>
         <dl class="detail-list">
           <div>
-            <dt>Kitchen</dt>
+            <dt>Cuisine</dt>
             <dd><%= link_to @recipe.kitchen.name, @recipe.kitchen %></dd>
           </div>
           <div>
-            <dt>Food type</dt>
+            <dt>Dish type</dt>
             <dd><%= link_to @recipe.food_type.name, @recipe.food_type %></dd>
           </div>
           <div>
-            <dt>Preference</dt>
+            <dt>Dietary preference</dt>
             <dd><%= link_to @recipe.preference.title, @recipe.preference %></dd>
           </div>
           <div>
-            <dt>Servings</dt>
+            <dt>Serves</dt>
             <dd><%= @recipe.servings %></dd>
           </div>
         </dl>

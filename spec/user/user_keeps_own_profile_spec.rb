@@ -21,7 +21,7 @@ feature 'User keep your own profile' do
     fill_in 'Name', with: 'João Labrego'
     fill_in 'Current password', with: user.password
 
-    click_on 'Update'
+    click_on 'Save changes'
 
     visit user_path(user)
 

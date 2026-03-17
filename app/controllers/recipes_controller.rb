@@ -15,14 +15,14 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe
     else
-      flash.now[:alert] = 'Warning! All fields are mandatory.'
+      flash.now[:alert] = 'Please complete every field before publishing your recipe.'
       render :new
     end
   end
 
   def edit
     if current_user.id != @recipe.user_id
-      redirect_to root_path, alert: 'You are not allowed to edit that recipe!'
+      redirect_to root_path, alert: 'You can only edit recipes you created.'
     end
   end
 
@@ -30,17 +30,17 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
-      flash.now[:alert] = 'Warning! All fields are mandatory.'
+      flash.now[:alert] = 'Please complete every field before saving your recipe.'
       render :edit
     end
   end
 
   def destroy
     if current_user.id != @recipe.user_id
-      redirect_to @recipe, alert: 'You are not allowed to destroy that recipe!'
+      redirect_to @recipe, alert: 'You can only delete recipes you created.'
     else
       @recipe.destroy
-      redirect_to root_path, alert: 'Recipe destroyed.'
+      redirect_to root_path, notice: 'Recipe deleted.'
     end
   end
 
@@ -50,10 +50,10 @@ class RecipesController < ApplicationController
   def favorite
     if request.delete?
       remove_fan if @recipe.fans.exists?(current_user.id)
-      redirect_to @recipe, notice: 'Receita removida das favoritas!'
+      redirect_to @recipe, notice: 'Recipe removed from your saved recipes.'
     else
       add_fan unless @recipe.fans.exists?(current_user.id)
-      redirect_to @recipe, notice: 'Receita adicionada as favoritas!'
+      redirect_to @recipe, notice: 'Recipe saved to your collection.'
     end
   end
 

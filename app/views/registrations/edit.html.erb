@@ -1,68 +1,90 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="page-shell">
+  <section class="page-intro page-intro--split">
+    <div>
+      <p class="eyebrow">Account settings</p>
+      <h1>Refine your profile without losing the calm.</h1>
+      <p class="page-intro__body">Update your public details, refresh your password, or close the account if you no longer need it.</p>
+    </div>
 
-      <%= form_with model: resource, scope: resource_name, url: registration_path(resource_name), method: :put, local: true do |f| %>
+    <aside class="info-card">
+      <p class="eyebrow">Profile care</p>
+      <h3>Keep your details current</h3>
+      <p>Your profile powers saved kitchens, published recipes, and the reading rhythm of the app.</p>
+    </aside>
+  </section>
+
+  <section class="section-card section-card--form">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+    <%= form_with model: resource, scope: resource_name, url: registration_path(resource_name), method: :put, local: true, class: 'editor-form' do |f| %>
       <%= render 'devise/shared/error_messages', resource: resource %>
 
-      <div class="form_group">
-        <%= f.label :name %><br />
-        <%= f.email_field :name, autofocus: true, class: 'form-control' %>
+      <div class="editor-form__grid">
+        <div class="form_group">
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+        </div>
+
+        <div class="form_group">
+          <%= f.label :location %>
+          <%= f.text_field :location, class: 'form-control' %>
+        </div>
+
+        <div class="form_group">
+          <%= f.label :twitter %>
+          <%= f.text_field :twitter, class: 'form-control' %>
+        </div>
+
+        <div class="form_group">
+          <%= f.label :facebook %>
+          <%= f.text_field :facebook, class: 'form-control' %>
+        </div>
+
+        <div class="form_group form_group--full">
+          <%= f.label :email %>
+          <%= f.email_field :email, autocomplete: 'email', class: 'form-control' %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p class="flash flash--notice">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+
+        <div class="form_group">
+          <%= f.label :password %>
+          <span class="form-hint">Leave blank if you do not want to change it</span>
+          <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+        </div>
+
+        <div class="form_group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control' %>
+        </div>
+
+        <div class="form_group form_group--full">
+          <%= f.label :current_password %>
+          <span class="form-hint">We need your current password to confirm these changes</span>
+          <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+        </div>
+
+        <div class="form_group form_group--full">
+          <%= f.submit 'Update', class: 'button button--primary' %>
+        </div>
+      </div>
+    <% end %>
+
+    <hr>
+
+    <div class="content-stack">
+      <div>
+        <p class="eyebrow">Account removal</p>
+        <h3>Cancel my account</h3>
+        <p class="page-intro__body">This permanently removes your access to saved recipes and profile actions.</p>
       </div>
 
-      <div class="form_group">
-        <%= f.label :location %><br />
-        <%= f.email_field :location, autofocus: true, class: 'form-control' %>
+      <div class="action-row">
+        <%= button_to 'Cancel my account', registration_path(resource_name), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button button--ghost' %>
+        <%= link_to 'Back to profile', user_path(resource), class: 'button button--secondary' %>
       </div>
-
-      <div class="form_group">
-        <%= f.label :twitter %><br />
-        <%= f.email_field :twitter, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="form_group">
-        <%= f.label :facebook %><br />
-        <%= f.email_field :facebook, autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form_group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="form_group">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-      </div>
-
-      <div class="form_group">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-      </div>
-
-      <div class="form_group">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Update", class: 'btn btn-primary' %>
-      </div>
-      <% end %>
-
-      <h3>Cancel my account</h3>
-
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-      <%= link_to "Back", :back %>
-
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
-    </div>
-  </div>
+  </section>
 </div>

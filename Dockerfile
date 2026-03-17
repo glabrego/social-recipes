@@ -1,4 +1,4 @@
-FROM ruby:3.2.9-bookworm
+FROM ruby:4.0.1-bookworm
 
 ENV APP_HOME=/app \
     BUNDLE_PATH=/bundle \

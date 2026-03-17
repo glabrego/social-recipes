@@ -13,12 +13,13 @@ gem 'bootstrap', '~> 5.3'
 gem 'nokogiri', '~> 1.15'
 gem 'bcrypt', '~> 3.1'
 gem 'ffi', '< 1.17'
+gem 'observer'
 
 group :development, :test do
   gem 'debug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 7.0'
-  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'factory_bot_rails', '~> 6.5'
   gem 'rubocop', '~> 1.63', require: false
   gem 'rubocop-rails', '~> 2.25', require: false
   gem 'capybara', '~> 3.39'

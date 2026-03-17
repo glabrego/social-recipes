@@ -4,6 +4,13 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Test hardening
+
+- Added deeper upload coverage for recipe photos, including preserving an existing attachment on edit and replacing it with a new file.
+- Added request coverage for recipe favorites and kitchen likes so repeated POST and DELETE calls no longer toggle or duplicate associations unexpectedly.
+- Added request coverage for admin-only taxonomy creation, including unauthenticated redirects, non-admin rejection, and invalid form submissions.
+- Added presence validations to kitchens, food types, and preferences so invalid admin submissions now fail consistently instead of silently creating blank records.
+
 ### Ruby 4.0 evaluation and adoption
 
 - Evaluated the Rails `8.1.2` baseline on Ruby `4.0.1` and adopted the runtime bump after verifying app boot, linting, Zeitwerk, and the full Docker-based test suite.

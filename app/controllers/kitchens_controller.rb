@@ -29,14 +29,12 @@ class KitchensController < ApplicationController
   end
 
   def like
-    unless @kitchen.likers.exists?(current_user.id)
-      @kitchen.likers << current_user
-      @kitchen.save
-      redirect_to @kitchen, notice: 'Cozinha adicionada as favoritas!'
-    else
-      @kitchen.likers.delete(current_user)
-      @kitchen.save
+    if request.delete?
+      @kitchen.likers.delete(current_user) if @kitchen.likers.exists?(current_user.id)
       redirect_to @kitchen, notice: 'Cozinha removida das favoritas!'
+    else
+      @kitchen.likers << current_user unless @kitchen.likers.exists?(current_user.id)
+      redirect_to @kitchen, notice: 'Cozinha adicionada as favoritas!'
     end
   end
 

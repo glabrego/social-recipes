@@ -6,10 +6,10 @@ feature 'User favorite recipe' do
     login_user
 
     visit recipe_path(recipe)
-    click_on 'Favoritar'
+    click_on 'Save recipe'
 
-    expect(page).to have_content('Receita adicionada as favoritas!')
-    expect(page).to have_content('1 Favoritaram')
+    expect(page).to have_content('Recipe saved to your collection.')
+    expect(page).to have_content('1 save')
   end
 
   scenario 'and remove from favorites' do
@@ -19,11 +19,11 @@ feature 'User favorite recipe' do
 
     visit recipe_path(recipe)
 
-    click_on 'Favoritar'
-    click_on 'Remover Favorita'
+    click_on 'Save recipe'
+    click_on 'Remove from saved'
 
-    expect(page).to have_content('Receita removida das favoritas!')
-    expect(page).to have_content('0 Favoritaram')
+    expect(page).to have_content('Recipe removed from your saved recipes.')
+    expect(page).to have_content('0 saves')
   end
 
   scenario 'and see users favorites' do
@@ -36,10 +36,10 @@ feature 'User favorite recipe' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit recipe_path(recipe)
-    click_on 'Favoritar'
+    click_on 'Save recipe'
 
     visit user_path(user)
 
@@ -56,10 +56,10 @@ feature 'User favorite recipe' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit recipe_path(recipe)
-    click_on 'Favoritar'
+    click_on 'Save recipe'
 
     visit root_path
 

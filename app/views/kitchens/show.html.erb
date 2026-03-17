@@ -1,16 +1,16 @@
 <div class="page-shell">
   <section class="page-intro page-intro--split">
     <div>
-      <p class="eyebrow">Kitchen view</p>
+      <p class="eyebrow">Cuisine</p>
       <h1><%= @kitchen.name %></h1>
-      <p class="lede">A focused stream of recipes from this kitchen, designed for scanning and saving.</p>
+      <p class="lede">Browse recipes from this cuisine in one focused, easy-to-scan view.</p>
     </div>
     <div class="info-card">
       <% if user_signed_in? %>
-        <%= button_to 'Favoritar', like_kitchen_path(@kitchen), method: :post, class: 'button button--primary' %>
-        <%= button_to 'Remover Favorita', like_kitchen_path(@kitchen), method: :delete, class: 'button button--ghost' %>
+        <%= button_to 'Save cuisine', like_kitchen_path(@kitchen), method: :post, class: 'button button--primary' %>
+        <%= button_to 'Remove from saved', like_kitchen_path(@kitchen), method: :delete, class: 'button button--ghost' %>
       <% else %>
-        <%= link_to 'Log in to save kitchens', new_user_session_path, class: 'button button--primary' %>
+        <%= link_to 'Log in to save this cuisine', new_user_session_path, class: 'button button--primary' %>
       <% end %>
     </div>
   </section>

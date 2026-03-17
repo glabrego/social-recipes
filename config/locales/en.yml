@@ -20,4 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      recipe:
+        name: "Recipe title"
+        kitchen_id: "Cuisine"
+        food_type_id: "Dish type"
+        preference_id: "Dietary preference"
+        servings: "Serves"
+        cook_time: "Cooking time"
+        difficulty: "Difficulty"
+        ingredients: "Ingredients"
+        steps: "Instructions"
+        photo: "Photo"
+      kitchen:
+        name: "Cuisine name"
+      food_type:
+        name: "Dish type name"
+      preference:
+        title: "Dietary preference name"

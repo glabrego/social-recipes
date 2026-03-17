@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :kitchen do
-    name { 'Japonesa' }
+    name { 'Japanese' }
   end
 end

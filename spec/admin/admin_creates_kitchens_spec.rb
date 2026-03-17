@@ -8,9 +8,9 @@ feature 'Admin creates new kitchens' do
 
     visit new_kitchen_path
 
-    fill_in 'Name', with: kitchen.name
+    fill_in 'Cuisine name', with: kitchen.name
 
-    click_on 'Criar Cozinha'
+    click_on 'Add cuisine'
 
     expect(page).to have_content kitchen.name
   end
@@ -22,9 +22,9 @@ feature 'Admin creates new kitchens' do
 
     visit new_kitchen_path
 
-    fill_in 'Name', with: kitchen.name
+    fill_in 'Cuisine name', with: kitchen.name
 
-    click_on 'Criar Cozinha'
+    click_on 'Add cuisine'
 
     expect(current_path).to eq root_path
   end

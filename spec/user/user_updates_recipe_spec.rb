@@ -9,16 +9,16 @@ feature 'User updates own recipe' do
 
     visit edit_recipe_path(recipe)
 
-    fill_in 'Name', with: 'Temaki Especial'
-    fill_in 'Servings', with: '6'
-    fill_in 'Ingredients', with: 'Salmao, arroz e cebolinha.'
-    fill_in 'Steps', with: 'Monte o recheio e finalize o temaki.'
+    fill_in 'Recipe title', with: 'Special temaki'
+    fill_in 'Serves', with: '6'
+    fill_in 'Ingredients', with: 'Salmon, rice, and scallions.'
+    fill_in 'Instructions', with: 'Assemble the filling and finish each temaki just before serving.'
 
-    click_on 'Salvar Receita'
+    click_on 'Save changes'
 
-    expect(page).to have_content 'Temaki Especial'
+    expect(page).to have_content 'Special temaki'
     expect(page).to have_content '6'
-    expect(page).to have_content 'Salmao, arroz e cebolinha.'
-    expect(page).to have_content 'Monte o recheio e finalize o temaki.'
+    expect(page).to have_content 'Salmon, rice, and scallions.'
+    expect(page).to have_content 'Assemble the filling and finish each temaki just before serving.'
   end
 end

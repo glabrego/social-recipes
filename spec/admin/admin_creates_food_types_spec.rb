@@ -8,9 +8,9 @@ feature 'Admin creates food types' do
 
     visit new_food_type_path
 
-    fill_in 'Name', with: food_type.name
+    fill_in 'Dish type name', with: food_type.name
 
-    click_on 'Criar Tipo de Comida'
+    click_on 'Add dish type'
 
     expect(page).to have_content food_type.name
   end
@@ -22,9 +22,9 @@ feature 'Admin creates food types' do
 
     visit new_food_type_path
 
-    fill_in 'Name', with: food_type.name
+    fill_in 'Dish type name', with: food_type.name
 
-    click_on 'Criar Tipo de Comida'
+    click_on 'Add dish type'
 
     expect(current_path). to eq root_path
   end

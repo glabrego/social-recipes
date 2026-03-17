@@ -1,15 +1,15 @@
 <div class="page-shell">
   <section class="hero-panel hero-panel--home">
     <div class="hero-panel__copy">
-      <p class="eyebrow">Editorial utility for home cooks</p>
-      <h1>Collect recipes with a calmer rhythm.</h1>
-      <p class="lede">Browse the most loved dishes, filter by kitchen and preference, and build a personal notebook that feels more like a journal than a feed.</p>
+      <p class="eyebrow">Simple tools for everyday cooking</p>
+      <h1>Save recipes you will actually want to cook again.</h1>
+      <p class="lede">Browse popular dishes, filter by cuisine and dietary preference, and build a personal recipe collection that stays easy to scan.</p>
       <div class="hero-panel__actions">
-        <%= link_to 'Explore all recipes', recipes_path, class: 'button button--primary' %>
+        <%= link_to 'Browse recipes', recipes_path, class: 'button button--primary' %>
         <% if user_signed_in? %>
-          <%= link_to 'Publish a recipe', new_recipe_path, class: 'button button--secondary' %>
+          <%= link_to 'Add a recipe', new_recipe_path, class: 'button button--secondary' %>
         <% else %>
-          <%= link_to 'Create an account', new_user_registration_path, class: 'button button--secondary' %>
+          <%= link_to 'Create account', new_user_registration_path, class: 'button button--secondary' %>
         <% end %>
       </div>
     </div>
@@ -36,9 +36,9 @@
         <div class="section-card__header">
           <div>
             <p class="eyebrow">Most saved</p>
-            <h2>Favorite recipes</h2>
+            <h2>Saved recipes</h2>
           </div>
-          <p class="section-card__hint">The dishes people keep coming back to.</p>
+          <p class="section-card__hint">Recipes people return to and save for later.</p>
         </div>
 
         <div class="recipe-grid">
@@ -48,7 +48,7 @@
             <% end %>
           <% else %>
             <div class="empty-state">
-              No favorites yet. Save a recipe to give this section some weight.
+              No recipes have been saved yet. Save one to start this list.
             </div>
           <% end %>
         </div>
@@ -57,10 +57,10 @@
       <section class="section-card">
         <div class="section-card__header">
           <div>
-            <p class="eyebrow">Fresh from the notebook</p>
+            <p class="eyebrow">Fresh additions</p>
             <h2>Recently added</h2>
           </div>
-          <p class="section-card__hint">New dishes, quick inspiration, and quiet browsing.</p>
+          <p class="section-card__hint">The latest recipes added to the collection.</p>
         </div>
 
         <div class="recipe-grid">
@@ -70,7 +70,7 @@
             <% end %>
           <% else %>
             <div class="empty-state">
-              No recipes have been published yet. Start the collection with the first dish.
+              No recipes have been published yet. Add the first recipe to get started.
             </div>
           <% end %>
         </div>
@@ -79,11 +79,11 @@
 
     <aside class="filter-rail">
       <section class="filter-card">
-        <p class="eyebrow">Navigate by taste</p>
-        <h3>Filters</h3>
+        <p class="eyebrow">Find recipes faster</p>
+        <h3>Browse by</h3>
 
         <div class="filter-group">
-          <h4>Cozinhas</h4>
+          <h4>Cuisines</h4>
           <div class="tag-cloud">
             <% @kitchens.each do |kitchen| %>
               <%= link_to kitchen.name, kitchen_path(kitchen), class: 'tag-link' %>
@@ -92,7 +92,7 @@
         </div>
 
         <div class="filter-group">
-          <h4>Tipos de comida</h4>
+          <h4>Dish types</h4>
           <div class="tag-cloud">
             <% @food_types.each do |food_type| %>
               <%= link_to food_type.name, food_type_path(food_type), class: 'tag-link' %>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="filter-group">
-          <h4>Preferências</h4>
+          <h4>Dietary preferences</h4>
           <div class="tag-cloud">
             <% @preferences.each do |preference| %>
               <%= link_to preference.title, preference_path(preference), class: 'tag-link' %>

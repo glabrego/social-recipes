@@ -13,21 +13,21 @@ feature 'User creates recipes' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit new_recipe_path
 
-    fill_in 'Name', with: recipe.name
-    select kitchen.name, from: 'Kitchen'
-    select food_type.name, from: 'Food type'
-    select preference.title, from: 'Preference'
-    fill_in 'Servings', with: recipe.servings
-    fill_in 'Cook time', with: recipe.cook_time
+    fill_in 'Recipe title', with: recipe.name
+    select kitchen.name, from: 'Cuisine'
+    select food_type.name, from: 'Dish type'
+    select preference.title, from: 'Dietary preference'
+    fill_in 'Serves', with: recipe.servings
+    fill_in 'Cooking time', with: recipe.cook_time
     select  recipe.difficulty, from: 'Difficulty'
     fill_in 'Ingredients', with: recipe.ingredients
-    fill_in 'Steps', with: recipe.steps
+    fill_in 'Instructions', with: recipe.steps
 
-    click_on 'Criar Receita'
+    click_on 'Publish recipe'
 
     expect(page).to have_content recipe.name
     expect(page).to have_content kitchen.name
@@ -48,12 +48,12 @@ feature 'User creates recipes' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit new_recipe_path
 
-    click_on 'Criar Receita'
+    click_on 'Publish recipe'
 
-    expect(page).to have_content 'Warning! All fields are mandatory.'
+    expect(page).to have_content 'Please complete every field before publishing your recipe.'
   end
 end

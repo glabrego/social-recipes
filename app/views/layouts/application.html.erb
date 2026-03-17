@@ -13,7 +13,7 @@
     <div class="shell site-header__inner">
       <div class="site-brand">
         <%= link_to 'Social Recipes', root_path, class: 'site-brand__mark' %>
-        <p class="site-brand__meta">Quiet recipe browsing, warm kitchens, and a personal collection worth keeping.</p>
+        <p class="site-brand__meta">Save recipes, explore cuisines, and keep your best finds in one easy collection.</p>
       </div>
 
       <nav class="site-nav" aria-label="Primary">
@@ -21,19 +21,19 @@
                     class: ['site-nav__link', ('site-nav__link--active' if current_page?(root_path))].compact.join(' ') %>
         <%= link_to 'Recipes', recipes_path,
                     class: ['site-nav__link', ('site-nav__link--active' if request.path.start_with?(recipes_path))].compact.join(' ') %>
-        <%= link_to 'Kitchens', kitchens_path,
+        <%= link_to 'Cuisines', kitchens_path,
                     class: ['site-nav__link', ('site-nav__link--active' if request.path.start_with?(kitchens_path))].compact.join(' ') %>
 
         <% if user_signed_in? %>
           <%= link_to current_user.email, user_path(current_user),
                       class: ['site-nav__link', ('site-nav__link--active' if request.path.start_with?(user_path(current_user)))].compact.join(' ') %>
-          <%= link_to 'New Recipe', new_recipe_path, class: 'site-nav__button' %>
+          <%= link_to 'Add Recipe', new_recipe_path, class: 'site-nav__button' %>
           <%= button_to 'Log out', destroy_user_session_path, method: :delete,
                         form_class: 'site-nav__form', class: 'site-nav__ghost' %>
         <% else %>
-          <%= link_to 'Sign In', new_user_session_path,
+          <%= link_to 'Log in', new_user_session_path,
                       class: ['site-nav__link', ('site-nav__link--active' if request.path.start_with?(new_user_session_path))].compact.join(' ') %>
-          <%= link_to 'Sign Up', new_user_registration_path, class: 'site-nav__button' %>
+          <%= link_to 'Create account', new_user_registration_path, class: 'site-nav__button' %>
         <% end %>
       </nav>
     </div>

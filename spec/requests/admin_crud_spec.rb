@@ -31,8 +31,8 @@ RSpec.describe 'Admin CRUD', type: :request do
       end.not_to change(Kitchen, :count)
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include('Warning! All fields are mandatory.')
-      expect(response.body).to include('Name')
+      expect(response.body).to include('Add a cuisine name before saving.')
+      expect(response.body).to include('Cuisine name')
     end
   end
 
@@ -66,8 +66,8 @@ RSpec.describe 'Admin CRUD', type: :request do
       end.not_to change(FoodType, :count)
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include('Warning! All fields are mandatory.')
-      expect(response.body).to include('Name')
+      expect(response.body).to include('Add a dish type before saving.')
+      expect(response.body).to include('Dish type name')
     end
   end
 
@@ -101,8 +101,8 @@ RSpec.describe 'Admin CRUD', type: :request do
       end.not_to change(Preference, :count)
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include('Warning! All fields are mandatory.')
-      expect(response.body).to include('Title')
+      expect(response.body).to include('Add a dietary preference before saving.')
+      expect(response.body).to include('Dietary preference name')
     end
   end
 end

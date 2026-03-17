@@ -16,11 +16,11 @@ class KitchensController < ApplicationController
       if @kitchen.save
         redirect_to @kitchen
       else
-        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        flash.now[:alert] = 'Add a cuisine name before saving.'
         render :new
       end
     else
-      redirect_to root_path, alert: 'You are not allowed to create kitchens!'
+      redirect_to root_path, alert: 'Only admins can add cuisines.'
     end
   end
 
@@ -31,10 +31,10 @@ class KitchensController < ApplicationController
   def like
     if request.delete?
       @kitchen.likers.delete(current_user) if @kitchen.likers.exists?(current_user.id)
-      redirect_to @kitchen, notice: 'Cozinha removida das favoritas!'
+      redirect_to @kitchen, notice: 'Cuisine removed from your saved list.'
     else
       @kitchen.likers << current_user unless @kitchen.likers.exists?(current_user.id)
-      redirect_to @kitchen, notice: 'Cozinha adicionada as favoritas!'
+      redirect_to @kitchen, notice: 'Cuisine saved to your profile.'
     end
   end
 

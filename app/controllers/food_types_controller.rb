@@ -16,11 +16,11 @@ class FoodTypesController < ApplicationController
       if @foodtype.save
         redirect_to @foodtype
       else
-        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        flash.now[:alert] = 'Add a dish type before saving.'
         render :new
       end
     else
-      redirect_to root_path, alert: 'You are not allowed to create new food type!'
+      redirect_to root_path, alert: 'Only admins can add dish types.'
     end
   end
 

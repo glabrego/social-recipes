@@ -9,15 +9,15 @@ feature 'User now can destroy your own recipes' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     recipe = FactoryBot.create(:recipe, user_id: user.id)
 
     visit recipe_path(recipe)
 
-    click_on 'Excluir'
+    click_on 'Delete recipe'
 
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Recipe destroyed.'
+    expect(page).to have_content 'Recipe deleted.'
   end
 end

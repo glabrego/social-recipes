@@ -12,10 +12,10 @@ feature 'User keeps your recipes' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
-    click_on 'Log in'
+    click_button 'Log in'
 
     visit edit_recipe_path(recipe)
-    click_on 'Salvar Receita'
+    click_on 'Save changes'
     expect(page).to have_content recipe.name
 
     visit edit_recipe_path(recipe2)

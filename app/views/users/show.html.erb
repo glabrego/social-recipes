@@ -3,14 +3,14 @@
     <div>
       <p class="eyebrow">Profile</p>
       <h1><%= @user.name.presence || @user.email %></h1>
-      <p class="lede">A personal shelf of kitchens, favorite recipes, and published dishes.</p>
+      <p class="lede">A personal space for saved cuisines, saved recipes, and everything this cook has published.</p>
     </div>
 
     <div class="profile-card">
-      <p><strong>Location</strong><%= @user.location.presence || 'Not set' %></p>
+      <p><strong>Location</strong><%= @user.location.presence || 'Not provided' %></p>
       <p><strong>Email</strong><%= @user.email %></p>
-      <p><strong>Twitter</strong><%= @user.twitter.presence || 'Not set' %></p>
-      <p><strong>Facebook</strong><%= @user.facebook.presence || 'Not set' %></p>
+      <p><strong>X / Twitter</strong><%= @user.twitter.presence || 'Not provided' %></p>
+      <p><strong>Facebook</strong><%= @user.facebook.presence || 'Not provided' %></p>
     </div>
   </section>
 
@@ -18,8 +18,8 @@
     <section class="section-card">
       <div class="section-card__header">
         <div>
-          <p class="eyebrow">Saved kitchens</p>
-          <h2>Cozinhas favoritas</h2>
+          <p class="eyebrow">Saved cuisines</p>
+          <h2>Saved cuisines</h2>
         </div>
       </div>
       <div class="taxonomy-grid taxonomy-grid--compact">
@@ -31,7 +31,7 @@
       <div class="section-card__header">
         <div>
           <p class="eyebrow">Saved recipes</p>
-          <h2>Receitas favoritas</h2>
+          <h2>Saved recipes</h2>
         </div>
       </div>
       <div class="recipe-grid">
@@ -43,7 +43,7 @@
       <div class="section-card__header">
         <div>
           <p class="eyebrow">Published</p>
-          <h2>Receitas publicadas</h2>
+          <h2>Published recipes</h2>
         </div>
       </div>
       <div class="recipe-grid">

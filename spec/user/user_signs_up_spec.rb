@@ -12,7 +12,7 @@ feature 'User signs up' do
     fill_in 'Password', with: 'rubyonrails'
     fill_in 'Password confirmation', with: 'rubyonrails'
 
-    click_on 'Sign up'
+    click_button 'Create account'
 
     user = User.find_by(email: 'ana@example.com')
 

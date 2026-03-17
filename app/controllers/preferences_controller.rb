@@ -16,11 +16,11 @@ class PreferencesController < ApplicationController
       if @preference.save
         redirect_to @preference
       else
-        flash.now[:alert] = 'Warning! All fields are mandatory.'
+        flash.now[:alert] = 'Add a dietary preference before saving.'
         render :new
       end
     else
-      redirect_to root_path, alert: 'You are not allowed to create preferences!'
+      redirect_to root_path, alert: 'Only admins can add dietary preferences.'
     end
   end
 

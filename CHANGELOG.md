@@ -4,6 +4,13 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Rails 8 asset stack modernization
+
+- Replaced the legacy Sprockets and SassC asset path with `propshaft` and `importmap-rails`.
+- Removed Bootstrap, moved the JavaScript entrypoint to `app/javascript/application.js`, and replaced the stylesheet with app-owned plain CSS.
+- Deleted the old asset manifest and initializer files that only existed for the Sprockets pipeline.
+- Verified linting, the full test suite, production asset precompilation, and browser smoke checks on the modernized stack.
+
 ### Leftover cleanup
 
 - Removed the redundant direct `responders`, `observer`, and `ffi` Gemfile entries after the Rails `8.1` / Ruby `4.0` migration settled.

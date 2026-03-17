@@ -22,7 +22,8 @@ The UI is a mix of English labels and Portuguese messages/content.
 - Active Storage for recipe photos
 - Cloudinary-backed Active Storage service in production, Disk service in development and test
 - Turbo Rails for frontend navigation/runtime
-- Bootstrap 5 with SassC/Sprockets for styling
+- Propshaft with importmap-rails for assets and JavaScript
+- App-owned plain CSS for styling, with no Bootstrap dependency
 - RSpec, Capybara, FactoryBot, and SimpleCov for tests
 
 ## Running Locally
@@ -117,7 +118,8 @@ The Docker image now uses Ruby `4.0.1` and Bundler `4.0.8` so the app can run on
 - After the Rails `8.1` upgrade, the runtime was evaluated and moved from Ruby `3.2.9` to Ruby `4.0.1`.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
-- The styling stack now uses Bootstrap 5 through the Sprockets pipeline with `sassc-rails`, so the Docker and CI commands no longer need a separate CSS build step.
+- The asset stack now uses `propshaft` and `importmap-rails`, with the JavaScript entrypoint living in `app/javascript/application.js`.
+- Bootstrap, SassC, Sprockets, and Uglifier have been removed. Styling now lives in the app-owned `app/assets/stylesheets/application.css`.
 - The Rails `8.1` bridge also upgraded `sqlite3` to the `2.x` line, replaced the legacy `pry-byebug` debugging path with `debug`, and upgraded Devise to `5.0.x` to stay on supported route and Hotwire behavior.
 - Ruby `4.0` compatibility required adding the standalone `observer` gem and moving `factory_bot_rails` to the `6.5.x` line because `observer` is no longer part of Ruby stdlib.
 - The branch now uses the latest compatible direct dependency set for this stack, including `capybara 3.40`, `rspec-rails 8.0`, `web-console 4.3`, `pg 1.6`, and `ffi 1.17`.
@@ -127,4 +129,4 @@ The Docker image now uses Ruby `4.0.1` and Bundler `4.0.8` so the app can run on
 - The legacy `recipes.photo` column and CarrierWave uploader were removed as part of the migration, so old CarrierWave-backed photo paths are not retained by this branch.
 - Rails `7.2` had already removed `config/secrets.yml`, set `secret_key_base` explicitly in environment config, replaced deprecated test/RSpec settings, and moved the cache serialization format off the legacy `6.1` default.
 - `config/storage.yml` is now part of the active upload path rather than just a framework compatibility file.
-- Remaining frontend follow-up is mostly visual cleanup and deeper Bootstrap 5 polish rather than stack replacement.
+- Remaining frontend follow-up is now visual/product polish rather than asset-stack migration.

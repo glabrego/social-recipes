@@ -4,6 +4,12 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Leftover cleanup
+
+- Removed the redundant direct `responders`, `observer`, and `ffi` Gemfile entries after the Rails `8.1` / Ruby `4.0` migration settled.
+- Removed the stale `app/assets/builds/application.css` artifact left over from the earlier Dart Sass path.
+- Replaced the old `config.serve_static_files` production setting with `config.public_file_server.enabled` and dropped the obsolete `config.assets.digest` line.
+
 ### Test hardening
 
 - Added deeper upload coverage for recipe photos, including preserving an existing attachment on edit and replacing it with a new file.

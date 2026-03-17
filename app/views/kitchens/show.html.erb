@@ -1,19 +1,23 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h2><%= @kitchen.name %></h2>
-      <hr>
-      <% @recipes.each do |recipe| %>
-        <p><%= link_to recipe.name, recipe %></p>
-        <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
-        <p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
-        <p><strong>Preference:</strong> <%= recipe.preference.title %></p>
-        <p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
-      <% end  %>
+<div class="page-shell">
+  <section class="page-intro page-intro--split">
+    <div>
+      <p class="eyebrow">Kitchen view</p>
+      <h1><%= @kitchen.name %></h1>
+      <p class="lede">A focused stream of recipes from this kitchen, designed for scanning and saving.</p>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-      <%= button_to 'Favoritar', like_kitchen_path(@kitchen), method: :post %><br>
-      <%= button_to 'Remover Favorita', like_kitchen_path(@kitchen), method: :delete %><br>
+    <div class="info-card">
+      <% if user_signed_in? %>
+        <%= button_to 'Favoritar', like_kitchen_path(@kitchen), method: :post, class: 'button button--primary' %>
+        <%= button_to 'Remover Favorita', like_kitchen_path(@kitchen), method: :delete, class: 'button button--ghost' %>
+      <% else %>
+        <%= link_to 'Log in to save kitchens', new_user_session_path, class: 'button button--primary' %>
+      <% end %>
     </div>
-  </div>
+  </section>
+
+  <section class="recipe-grid">
+    <% @recipes.each do |recipe| %>
+      <%= render recipe %>
+    <% end %>
+  </section>
 </div>

@@ -1,19 +1,54 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h2> Cozinhas Favoritas </h2>
-      <%= render @user.likes%>
-      <h2>Receitas Favoritas</h2>
-      <%= render @user.favorites%>
-      <h2> Receitas Publicadas </h2>
-      <%= render @user.recipes%>
+<div class="page-shell">
+  <section class="profile-hero">
+    <div>
+      <p class="eyebrow">Profile</p>
+      <h1><%= @user.name.presence || @user.email %></h1>
+      <p class="lede">A personal shelf of kitchens, favorite recipes, and published dishes.</p>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-      <h2><%= @user.name %></h2>
-      <p><%= @user.location %></p><br>
-      <p><%= @user.email %></p><br>
-      <p><%= @user.twitter %></p><br>
-      <p><%= @user.facebook %></p><br>
+
+    <div class="profile-card">
+      <p><strong>Location</strong><%= @user.location.presence || 'Not set' %></p>
+      <p><strong>Email</strong><%= @user.email %></p>
+      <p><strong>Twitter</strong><%= @user.twitter.presence || 'Not set' %></p>
+      <p><strong>Facebook</strong><%= @user.facebook.presence || 'Not set' %></p>
     </div>
+  </section>
+
+  <div class="content-stack">
+    <section class="section-card">
+      <div class="section-card__header">
+        <div>
+          <p class="eyebrow">Saved kitchens</p>
+          <h2>Cozinhas favoritas</h2>
+        </div>
+      </div>
+      <div class="taxonomy-grid taxonomy-grid--compact">
+        <%= render @user.likes %>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-card__header">
+        <div>
+          <p class="eyebrow">Saved recipes</p>
+          <h2>Receitas favoritas</h2>
+        </div>
+      </div>
+      <div class="recipe-grid">
+        <%= render @user.favorites %>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-card__header">
+        <div>
+          <p class="eyebrow">Published</p>
+          <h2>Receitas publicadas</h2>
+        </div>
+      </div>
+      <div class="recipe-grid">
+        <%= render @user.recipes %>
+      </div>
+    </section>
   </div>
 </div>

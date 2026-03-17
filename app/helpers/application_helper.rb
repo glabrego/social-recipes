@@ -1,7 +1,11 @@
 module ApplicationHelper
-  def recipe_image(recipe, options = {})
-    return unless recipe.photo.attached?
+  def recipe_visual(recipe, options = {})
+    css_class = options.delete(:class)
 
-    image_tag(url_for(recipe.photo), options)
+    if recipe.photo.attached?
+      image_tag(url_for(recipe.photo), options.merge(class: css_class))
+    else
+      content_tag(:div, recipe.name.to_s.first(2).upcase, class: [css_class, 'recipe-visual--placeholder'].compact.join(' '))
+    end
   end
 end

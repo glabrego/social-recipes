@@ -1,19 +1,13 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h2><%= @preference.title %></h2>
-      <hr>
-      <% @recipes.each do |recipe| %>
-      <p><%= link_to recipe.name, recipe %></p>
-      <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
-      <p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
-      <p><strong>Preference:</strong> <%= recipe.preference.title %></p>
-      <p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
-      <% end  %>
+<div class="page-shell">
+  <section class="page-intro">
+    <p class="eyebrow">Preference</p>
+    <h1><%= @preference.title %></h1>
+    <p class="lede">A curated view of recipes organized around the way someone wants to eat.</p>
+  </section>
 
-    </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
-    </div>
-  </div>
+  <section class="recipe-grid">
+    <% @recipes.each do |recipe| %>
+      <%= render recipe %>
+    <% end %>
+  </section>
 </div>

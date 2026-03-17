@@ -1,3 +1,5 @@
-<h4><%= link_to kitchen.name, kitchen %></h4>
-<br>
-<hr>
+<article class="taxonomy-card">
+  <p class="eyebrow">Kitchen</p>
+  <h3><%= link_to kitchen.name, kitchen %></h3>
+  <p><%= pluralize(kitchen.recipes.count, 'recipe') %> in this collection.</p>
+</article>

@@ -2,28 +2,48 @@
 <html>
 <head>
   <title>SocialRecipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
   <%= javascript_importmap_tags %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 </head>
 <body>
-    <nav class='navbar navbar-expand-lg fixed-top bg-light border-bottom'>
-      <div class='container'>
-         <%= link_to 'Social Recipe', root_path, class: 'navbar-brand' %>
-         <p class='navbar-text navbar-right'>
-            <% if user_signed_in? %>
-              <%= link_to 'Olá, ' + current_user.email, user_path(current_user), class: 'me-3 text-decoration-none' %>
-            <% end %>
-            <%= link_to 'Sign Up', new_user_registration_path, class: 'me-3 text-decoration-none' %>
-            <%= link_to 'Login', new_user_session_path, class: 'text-decoration-none' %>
-         </p>
+  <header class="site-header">
+    <div class="shell site-header__inner">
+      <div class="site-brand">
+        <%= link_to 'Social Recipes', root_path, class: 'site-brand__mark' %>
+        <p class="site-brand__meta">Quiet recipe browsing, warm kitchens, and a personal collection worth keeping.</p>
       </div>
-    </nav>
 
-  <p class='notice'><%= notice %></p>
-  <p class='alert'><%= alert %></p>
-<%= yield %>
+      <nav class="site-nav" aria-label="Primary">
+        <%= link_to 'Discover', root_path, class: 'site-nav__link' %>
+        <%= link_to 'Recipes', recipes_path, class: 'site-nav__link' %>
+        <%= link_to 'Kitchens', kitchens_path, class: 'site-nav__link' %>
 
+        <% if user_signed_in? %>
+          <%= link_to current_user.email, user_path(current_user), class: 'site-nav__link' %>
+          <%= link_to 'New Recipe', new_recipe_path, class: 'site-nav__button' %>
+          <%= button_to 'Log out', destroy_user_session_path, method: :delete,
+                        form_class: 'site-nav__form', class: 'site-nav__ghost' %>
+        <% else %>
+          <%= link_to 'Sign In', new_user_session_path, class: 'site-nav__link' %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'site-nav__button' %>
+        <% end %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <% if notice.present? %>
+      <p class="flash flash--notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert.present? %>
+      <p class="flash flash--alert"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </main>
 </body>
 </html>

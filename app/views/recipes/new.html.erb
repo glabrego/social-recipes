@@ -1,13 +1,17 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h1>Nova Receita</h1>
-      <hr>
-      <%= render partial: 'form', locals: { submit_text: 'Criar Receita' } %>
-
+<div class="page-shell">
+  <section class="page-intro page-intro--split">
+    <div>
+      <p class="eyebrow">Publish</p>
+      <h1>Nova receita</h1>
+      <p class="lede">Give your recipe a clear title, useful metadata, and a photo that makes people want to keep it.</p>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
+    <div class="info-card">
+      <p class="eyebrow">Good submissions feel light</p>
+      <p>Keep ingredients scannable, steps short, and metadata complete so the card reads well on mobile.</p>
     </div>
-  </div>
+  </section>
+
+  <section class="section-card section-card--form">
+    <%= render partial: 'form', locals: { submit_text: 'Criar Receita' } %>
+  </section>
 </div>

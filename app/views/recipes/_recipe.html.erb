@@ -1,8 +1,18 @@
-<h4><%= link_to recipe.name, recipe %></h4><br>
-<%= recipe_image(recipe, alt: recipe.name) %>
-<p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
-<p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
-<p><strong>Preference:</strong> <%= recipe.preference.title %></p>
-<p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
-<br>
-<hr>
+<article class="recipe-card">
+  <%= link_to recipe_path(recipe), class: 'recipe-card__visual-link' do %>
+    <%= recipe_visual(recipe, alt: recipe.name, class: 'recipe-card__visual') %>
+  <% end %>
+
+  <div class="recipe-card__body">
+    <p class="eyebrow"><%= recipe.kitchen.name %> · <%= recipe.food_type.name %></p>
+    <h3 class="recipe-card__title"><%= link_to recipe.name, recipe %></h3>
+    <p class="recipe-card__meta">
+      <span><%= recipe.preference.title %></span>
+      <span><%= recipe.difficulty %></span>
+    </p>
+    <div class="recipe-card__footer">
+      <span><%= pluralize(recipe.fans.count, 'favorite') %></span>
+      <span><%= recipe.cook_time %> min</span>
+    </div>
+  </div>
+</article>

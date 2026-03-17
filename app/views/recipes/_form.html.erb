@@ -1,6 +1,7 @@
 <span class="error_message"><%= flash[:alert] %></span>
-<%= form_with model: @recipe, local: true, html: { multipart: true } do |f| %>
-  <div class="form_group">
+<%= form_with model: @recipe, local: true, html: { multipart: true, class: 'editor-form' } do |f| %>
+  <div class="editor-form__grid">
+  <div class="form_group form_group--full">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
@@ -36,12 +37,13 @@
     <%= f.label :steps %>
     <%= f.text_area :steps, class: 'form-control' %>
   </div>
-  <div class="form_group">
+  <div class="form_group form_group--full">
     <%= f.label :photo %>
     <%= f.file_field :photo, class: 'form-control upload' %>
     <div class="image-frame"></div>
   </div>
-  <div class="form_group">
-    <%= f.submit submit_text, class: 'btn btn-primary' %>
+  <div class="form_group form_group--full">
+    <%= f.submit submit_text, class: 'button button--primary' %>
+  </div>
   </div>
 <% end %>

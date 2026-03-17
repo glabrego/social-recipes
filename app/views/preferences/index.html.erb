@@ -1,10 +1,11 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <%= render @preferences %>
-    </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
+<div class="page-shell">
+  <section class="page-intro">
+    <p class="eyebrow">Browse</p>
+    <h1>Preferences</h1>
+    <p class="lede">Filter the collection around the way people want to eat, not just what they want to cook.</p>
+  </section>
 
-    </div>
-  </div>
+  <section class="taxonomy-grid">
+    <%= render @preferences %>
+  </section>
 </div>

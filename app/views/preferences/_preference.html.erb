@@ -1,3 +1,5 @@
-<h4><%= link_to preference.title, preference %></h4>
-<br>
-<hr>
+<article class="taxonomy-card">
+  <p class="eyebrow">Preference</p>
+  <h3><%= link_to preference.title, preference %></h3>
+  <p><%= pluralize(preference.recipes.count, 'recipe') %> aligned with this preference.</p>
+</article>

@@ -1,20 +1,13 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h2><%= @foodtype.name %></h2>
-      <hr>
+<div class="page-shell">
+  <section class="page-intro">
+    <p class="eyebrow">Food type</p>
+    <h1><%= @foodtype.name %></h1>
+    <p class="lede">Recipes collected by the kind of meal they become, with the same calm reading experience as the homepage.</p>
+  </section>
 
-      <% @recipes.each do |recipe| %>
-      <p><%= link_to recipe.name, recipe %></p>
-      <p><strong>Kitchen:</strong> <%= recipe.kitchen.name %></p>
-      <p><strong>Food type:</strong> <%= recipe.food_type.name%></p>
-      <p><strong>Preference:</strong> <%= recipe.preference.title %></p>
-      <p><strong>Difficulty:</strong> <%= recipe.difficulty %></p>
-      <% end  %>
-
-    </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
-    </div>
-  </div>
+  <section class="recipe-grid">
+    <% @recipes.each do |recipe| %>
+      <%= render recipe %>
+    <% end %>
+  </section>
 </div>

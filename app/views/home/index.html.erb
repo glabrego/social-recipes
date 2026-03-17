@@ -1,43 +1,114 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-md-8">
-      <h2>Receitas Favoritadas</h2>
-      <% @favorites.each do |recipe| %>
-        <%= render recipe%>
-      <% end  %>
-      <h2> Receitas adicionadas recentemente</h2>
-        <% @recipes.each do |recipe| %>
-        <%= render recipe%>
-      <% end  %>
+<div class="page-shell">
+  <section class="hero-panel hero-panel--home">
+    <div class="hero-panel__copy">
+      <p class="eyebrow">Editorial utility for home cooks</p>
+      <h1>Collect recipes with a calmer rhythm.</h1>
+      <p class="lede">Browse the most loved dishes, filter by kitchen and preference, and build a personal notebook that feels more like a journal than a feed.</p>
+      <div class="hero-panel__actions">
+        <%= link_to 'Explore all recipes', recipes_path, class: 'button button--primary' %>
+        <% if user_signed_in? %>
+          <%= link_to 'Publish a recipe', new_recipe_path, class: 'button button--secondary' %>
+        <% else %>
+          <%= link_to 'Create an account', new_user_registration_path, class: 'button button--secondary' %>
+        <% end %>
+      </div>
     </div>
-    <div id="sidebar" class="col-xs-6 col-md-4">
-      <h3> Filtros </h3>
-      <h4> Cozinhas </h4>
-      <ul style="list-style-type:none">
-          <% @kitchens.each do |kitchen| %>
-          <li>
-          <%= link_to kitchen.name, kitchen_path(kitchen) %>
-          </li>
+
+    <div class="hero-metrics">
+      <div class="metric-card">
+        <span class="metric-card__label">Top picks</span>
+        <strong><%= @favorites.size %></strong>
+      </div>
+      <div class="metric-card">
+        <span class="metric-card__label">Recently added</span>
+        <strong><%= @recipes.size %></strong>
+      </div>
+      <div class="metric-card">
+        <span class="metric-card__label">Filter groups</span>
+        <strong><%= @kitchens.size + @food_types.size + @preferences.size %></strong>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-layout">
+    <div class="content-stack">
+      <section class="section-card">
+        <div class="section-card__header">
+          <div>
+            <p class="eyebrow">Most saved</p>
+            <h2>Favorite recipes</h2>
+          </div>
+          <p class="section-card__hint">The dishes people keep coming back to.</p>
+        </div>
+
+        <div class="recipe-grid">
+          <% if @favorites.any? %>
+            <% @favorites.each do |recipe| %>
+              <%= render recipe %>
+            <% end %>
+          <% else %>
+            <div class="empty-state">
+              No favorites yet. Save a recipe to give this section some weight.
+            </div>
           <% end %>
-      </ul>
+        </div>
+      </section>
 
-      <h4> Tipos de Comida </h4>
-      <ul style="list-style-type:none">
-        <% @food_types.each do |food_type| %>
-        <li>
-          <%= link_to food_type.name, food_type_path(food_type) %>
-        </li>
-        <% end %>
-      </ul>
+      <section class="section-card">
+        <div class="section-card__header">
+          <div>
+            <p class="eyebrow">Fresh from the notebook</p>
+            <h2>Recently added</h2>
+          </div>
+          <p class="section-card__hint">New dishes, quick inspiration, and quiet browsing.</p>
+        </div>
 
-      <h4> Preferências </h4>
-      <ul style="list-style-type:none">
-        <% @preferences.each do |preference| %>
-        <li>
-          <%= link_to preference.title, preference_path(preference) %>
-        </li>
-        <% end %>
-      </ul>
+        <div class="recipe-grid">
+          <% if @recipes.any? %>
+            <% @recipes.each do |recipe| %>
+              <%= render recipe %>
+            <% end %>
+          <% else %>
+            <div class="empty-state">
+              No recipes have been published yet. Start the collection with the first dish.
+            </div>
+          <% end %>
+        </div>
+      </section>
     </div>
+
+    <aside class="filter-rail">
+      <section class="filter-card">
+        <p class="eyebrow">Navigate by taste</p>
+        <h3>Filters</h3>
+
+        <div class="filter-group">
+          <h4>Cozinhas</h4>
+          <div class="tag-cloud">
+            <% @kitchens.each do |kitchen| %>
+              <%= link_to kitchen.name, kitchen_path(kitchen), class: 'tag-link' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Tipos de comida</h4>
+          <div class="tag-cloud">
+            <% @food_types.each do |food_type| %>
+              <%= link_to food_type.name, food_type_path(food_type), class: 'tag-link' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Preferências</h4>
+          <div class="tag-cloud">
+            <% @preferences.each do |preference| %>
+              <%= link_to preference.title, preference_path(preference), class: 'tag-link' %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </aside>
   </div>
 </div>

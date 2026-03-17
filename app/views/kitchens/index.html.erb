@@ -1,10 +1,11 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <%= render @kitchens %>
-    </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
+<div class="page-shell">
+  <section class="page-intro">
+    <p class="eyebrow">Browse</p>
+    <h1>Kitchens</h1>
+    <p class="lede">Explore the collection through regional flavor and cooking tradition.</p>
+  </section>
 
-    </div>
-  </div>
+  <section class="taxonomy-grid">
+    <%= render @kitchens %>
+  </section>
 </div>

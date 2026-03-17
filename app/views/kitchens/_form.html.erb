@@ -1,11 +1,16 @@
-<span class="error_message"><%= flash[:alert] %></span>
-<%= form_with model: @kitchen, local: true do |f| %>
-  <div class="form_group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
+<% if flash[:alert].present? %>
+  <p class="flash flash--alert"><%= flash[:alert] %></p>
+<% end %>
 
-  <div class="form_group">
-    <%= f.submit submit_text, class: 'btn btn-primary' %>
+<%= form_with model: @kitchen, local: true, class: 'editor-form' do |f| %>
+  <div class="editor-form__grid">
+    <div class="form_group form_group--full">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form_group form_group--full">
+      <%= f.submit submit_text, class: 'button button--primary' %>
+    </div>
   </div>
 <% end %>

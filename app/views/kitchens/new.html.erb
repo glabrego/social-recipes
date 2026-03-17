@@ -1,13 +1,17 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h1>Nova Cozinha</h1>
-      <hr>
-      <%= render partial: 'form', locals: { submit_text: 'Criar Cozinha' } %>
-
+<div class="page-shell">
+  <section class="page-intro page-intro--split">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Nova cozinha</h1>
+      <p class="lede">Keep taxonomy clean and memorable so people can browse the collection without friction.</p>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
+    <div class="info-card">
+      <p class="eyebrow">Naming advice</p>
+      <p>Prefer familiar kitchen names that scan well in filter chips and cards.</p>
     </div>
-  </div>
+  </section>
+
+  <section class="section-card section-card--form">
+    <%= render partial: 'form', locals: { submit_text: 'Criar Cozinha' } %>
+  </section>
 </div>

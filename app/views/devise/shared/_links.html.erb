@@ -1,0 +1,13 @@
+<div class="auth-links">
+  <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to 'Create an account', new_registration_path(resource_name), class: 'auth-links__item' %>
+  <% end %>
+
+  <% if controller_name != 'sessions' %>
+    <%= link_to 'Already have an account? Log in', new_session_path(resource_name), class: 'auth-links__item' %>
+  <% end %>
+
+  <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'auth-links__item' %>
+  <% end %>
+</div>

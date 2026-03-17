@@ -1,3 +1,5 @@
-<h4><%= link_to food_type.name, food_type %></h4>
-<br>
-<hr>
+<article class="taxonomy-card">
+  <p class="eyebrow">Food type</p>
+  <h3><%= link_to food_type.name, food_type %></h3>
+  <p><%= pluralize(food_type.recipes.count, 'recipe') %> tagged here.</p>
+</article>

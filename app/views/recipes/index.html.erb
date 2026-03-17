@@ -1,9 +1,13 @@
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
+<div class="page-shell">
+  <section class="page-intro">
+    <p class="eyebrow">Library</p>
+    <h1>All recipes</h1>
+    <p class="lede">A clean catalogue of every dish in the collection, ready for browsing on phone or desktop.</p>
+  </section>
+
+  <section class="section-card">
+    <div class="recipe-grid">
       <%= render @recipes %>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-    </div>
-  </div>
+  </section>
 </div>

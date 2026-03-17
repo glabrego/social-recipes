@@ -1,14 +1,17 @@
-
-<div id="main-container" class="container">
-  <div class="row">
-    <div id="content" class="col-xs-12 col-sm-6 col-m-8">
-      <h1>Nova Preferência</h1>
-      <hr>
-      <%= render partial: 'form', locals: { submit_text: 'Criar Preferência' } %>
-
+<div class="page-shell">
+  <section class="page-intro page-intro--split">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Nova preferência</h1>
+      <p class="lede">Treat preference tags as a clear reading aid for people browsing on the move.</p>
     </div>
-    <div id="sidebar" class="col-xs-6 col-m-4">
-
+    <div class="info-card">
+      <p class="eyebrow">Keep it intuitive</p>
+      <p>Strong preference labels make the app feel helpful immediately, especially on the homepage.</p>
     </div>
-  </div>
+  </section>
+
+  <section class="section-card section-card--form">
+    <%= render partial: 'form', locals: { submit_text: 'Criar Preferência' } %>
+  </section>
 </div>

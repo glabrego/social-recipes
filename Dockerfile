@@ -1,4 +1,4 @@
-FROM ruby:3.2.9-bookworm
+FROM ruby:4.0.1-bookworm
 
 ENV APP_HOME=/app \
     BUNDLE_PATH=/bundle \
@@ -16,13 +16,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem install bundler -v 2.4.22 --no-document
+RUN gem install bundler -v 4.0.8 --no-document
 
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle _2.4.22_ config set build.nokogiri --use-system-libraries && \
-    bundle _2.4.22_ config set without 'production' && \
-    (bundle _2.4.22_ install > /tmp/bundle.log 2>&1 || (tail -n 200 /tmp/bundle.log && false))
+RUN bundle _4.0.8_ config set build.nokogiri --use-system-libraries && \
+    bundle _4.0.8_ config set without 'production' && \
+    (bundle _4.0.8_ install > /tmp/bundle.log 2>&1 || (tail -n 200 /tmp/bundle.log && false))
 
 COPY . .
 

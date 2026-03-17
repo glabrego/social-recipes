@@ -4,6 +4,16 @@ This changelog was reconstructed from the repository commit history because the 
 
 ## 2026-03-16
 
+### Ruby 4.0 evaluation and adoption
+
+- Evaluated the Rails `8.1.2` baseline on Ruby `4.0.1` and adopted the runtime bump after verifying app boot, linting, Zeitwerk, and the full Docker-based test suite.
+- Moved the Docker runtime from Ruby `3.2.9` to Ruby `4.0.1`.
+- Added the standalone `observer` gem because Ruby `4.0` no longer ships it in stdlib and upgraded `factory_bot_rails` to `6.5.x` so the test stack boots cleanly on the new runtime.
+- Refreshed the app to the latest compatible direct dependency set on the Rails `8.1` baseline, including `capybara 3.40`, `rspec-rails 8.0`, `web-console 4.3`, `pg 1.6`, and `ffi 1.17`.
+- Added `puma 7.2` explicitly because the newer Rack/Bundler stack no longer boots `rails server` without a server gem in the bundle.
+- Upgraded Bundler from `2.4.22` to `4.0.8`, which removed the RubyGems platform constant warnings that were showing up under Ruby `4.0.1`.
+- Verified the live app container and browser smoke checks on the homepage and Devise auth pages after the runtime change.
+
 ### Upload storage migration
 
 - Replaced CarrierWave with Active Storage for recipe photos.

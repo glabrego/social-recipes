@@ -15,7 +15,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 ## Stack
 
 - Ruby on Rails 8.1.2
-- Ruby 3.2.9 in Docker
+- Ruby 4.0.1 in Docker
 - SQLite in development and test
 - PostgreSQL gem included for production only
 - Devise 5 for authentication
@@ -90,7 +90,7 @@ docker-compose run --rm -e RAILS_ENV=test app bash -lc "bundle exec rails db:env
 Expected result from the validated environment:
 
 ```text
-30 examples, 0 failures
+31 examples, 0 failures
 ```
 
 ## Files Added For Compatibility
@@ -102,7 +102,7 @@ To make the project runnable on this machine without rewriting the application, 
 - `app/assets/config/manifest.js`
 - `config/storage.yml`
 
-The Docker image now uses Ruby `3.2.9` and a modern Bundler lock so the app can run on Rails `8.1` with a current SQLite runtime.
+The Docker image now uses Ruby `4.0.1` and Bundler `4.0.8` so the app can run on Rails `8.1` with a current SQLite runtime.
 
 ## Notes and Caveats
 
@@ -113,12 +113,16 @@ The Docker image now uses Ruby `3.2.9` and a modern Bundler lock so the app can 
 
 ## Upgrade Notes
 
-- The app now runs on Rails `8.1.2` with Ruby `3.2.9` in Docker.
-- The Rails `8.x` bridge required another runtime bump, from Ruby `3.1.6` to `3.2.9`, because Rails `8.1` requires Ruby `>= 3.2`.
+- The app now runs on Rails `8.1.2` with Ruby `4.0.1` in Docker.
+- After the Rails `8.1` upgrade, the runtime was evaluated and moved from Ruby `3.2.9` to Ruby `4.0.1`.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.
 - The styling stack now uses Bootstrap 5 through the Sprockets pipeline with `sassc-rails`, so the Docker and CI commands no longer need a separate CSS build step.
 - The Rails `8.1` bridge also upgraded `sqlite3` to the `2.x` line, replaced the legacy `pry-byebug` debugging path with `debug`, and upgraded Devise to `5.0.x` to stay on supported route and Hotwire behavior.
+- Ruby `4.0` compatibility required adding the standalone `observer` gem and moving `factory_bot_rails` to the `6.5.x` line because `observer` is no longer part of Ruby stdlib.
+- The branch now uses the latest compatible direct dependency set for this stack, including `capybara 3.40`, `rspec-rails 8.0`, `web-console 4.3`, `pg 1.6`, and `ffi 1.17`.
+- `puma 7.2` is now explicit in the Gemfile because the newer Rack/Bundler stack no longer boots `rails server` without a server gem.
+- Bundler was upgraded from `2.4.22` to `4.0.8`, which removed the RubyGems platform constant warnings that appeared under Ruby `4.0.1`.
 - Uploads now use Active Storage instead of CarrierWave. The app installs the Active Storage tables, stores files on Disk in development/test, and uses Cloudinary as the configured production service.
 - The legacy `recipes.photo` column and CarrierWave uploader were removed as part of the migration, so old CarrierWave-backed photo paths are not retained by this branch.
 - Rails `7.2` had already removed `config/secrets.yml`, set `secret_key_base` explicitly in environment config, replaced deprecated test/RSpec settings, and moved the cache serialization format off the legacy `6.1` default.

@@ -2,6 +2,22 @@
 
 This changelog was reconstructed from the repository commit history because the project does not use historical tags or formal releases.
 
+## 2026-03-26
+
+### Dependency simplification
+
+- Removed the redundant direct `nokogiri`, `bcrypt`, `pry-rails`, and `web-console` Gemfile entries after confirming the app still received the needed transitive dependencies from Rails and Devise.
+- Regenerated `Gemfile.lock` so the direct dependency list is smaller and the unused `pry`, `coderay`, `method_source`, `bindex`, and `web-console` packages dropped out of the resolved graph.
+- Verified the Docker-based test suite after each cleanup step and kept the app green with `46 examples, 0 failures`.
+
+### Docker runtime optimization
+
+- Switched the app container from `ruby:4.0.1-bookworm` to `ruby:4.0.1-slim-trixie` to reduce image weight while keeping the Ruby runtime on `4.0.1`.
+- Added `libyaml-dev` to the image because `psych 5.3.1` now requires `yaml.h` during bundle install on the slim base.
+- Parameterized the Dockerfile with `ARG RUBY_IMAGE` so the app can be rebuilt against different official Ruby base images for direct comparison and future runtime evaluation.
+- Measured the resulting app image reduction locally: `social-recipes-app:bookworm` at `1.86GB` versus `social-recipes-app:slim-trixie` at `1.16GB`, a `700MB` reduction of roughly `38%`.
+- Updated the README runtime notes to reflect the `slim-trixie` container base and re-verified the Docker-based test suite with `46 examples, 0 failures`.
+
 ## 2026-03-17
 
 ### App experience redesign

@@ -15,7 +15,7 @@ The UI is a mix of English labels and Portuguese messages/content.
 ## Stack
 
 - Ruby on Rails 8.1.2
-- Ruby 4.0.1 in Docker
+- Ruby 4.0.1 in Docker via `ruby:4.0.1-slim-trixie`
 - SQLite in development and test
 - PostgreSQL gem included for production only
 - Devise 5 for authentication
@@ -103,7 +103,7 @@ To make the project runnable on this machine without rewriting the application, 
 - `app/assets/config/manifest.js`
 - `config/storage.yml`
 
-The Docker image now uses Ruby `4.0.1` and Bundler `4.0.8` so the app can run on Rails `8.1` with a current SQLite runtime.
+The Docker image now uses Ruby `4.0.1` from `ruby:4.0.1-slim-trixie` and Bundler `4.0.8` so the app can run on Rails `8.1` with a current SQLite runtime.
 
 ## Notes and Caveats
 
@@ -114,7 +114,7 @@ The Docker image now uses Ruby `4.0.1` and Bundler `4.0.8` so the app can run on
 
 ## Upgrade Notes
 
-- The app now runs on Rails `8.1.2` with Ruby `4.0.1` in Docker.
+- The app now runs on Rails `8.1.2` with Ruby `4.0.1` in Docker via `ruby:4.0.1-slim-trixie`.
 - After the Rails `8.1` upgrade, the runtime was evaluated and moved from Ruby `3.2.9` to Ruby `4.0.1`.
 - Zeitwerk is enabled and `bundle exec rails zeitwerk:check` passes.
 - Turbolinks and jQuery have been removed. The frontend runtime now uses `turbo-rails`, `form_with`, and explicit `button_to` actions where method-based links previously depended on `jquery_ujs`.

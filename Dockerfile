@@ -1,4 +1,5 @@
-FROM ruby:4.0.1-bookworm
+ARG RUBY_IMAGE=ruby:4.0.1-slim-trixie
+FROM ${RUBY_IMAGE}
 
 ENV APP_HOME=/app \
     BUNDLE_PATH=/bundle \
@@ -9,6 +10,8 @@ WORKDIR $APP_HOME
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    bash \
+    libyaml-dev \
     libxml2-dev \
     libxslt1-dev \
     libsqlite3-dev \
